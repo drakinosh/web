@@ -1,0 +1,9 @@
+Tue 21 Nov 2017 02:12:57 PM +0545
+
+Database plan
+
+Tables:
+1) Users: uname, passwd(hashed and salted), uid, joined
+2) Threads: title, details, user(publisher), views, replies, date-pub,
+            isSticky
+3) Posts: user(poster), details, images(how? BLOB's?), date-post, quote(how?)
