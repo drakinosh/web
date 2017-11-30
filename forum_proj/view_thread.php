@@ -55,8 +55,14 @@ $user_row = $stmt2->fetch();
 
 <table border="1" id="post-table">
 <tr>
-    <td class="tuser"><?php echo $user_row["username"]; ?></td>
-    <td class="tdetails"><?php echo $row["details"]; ?></td>
+    <div class="post-ldata">
+        <td class="tuser"><?php echo $user_row["username"]; ?>
+        <img src="getimage.php?uid=<?php echo $row["t_uid"]; ?>" class="avatar-img">
+        </td>
+    </div>
+    <div>
+        <td class="tdetails" valign="top"><?php echo $row["details"]; ?></td>
+    </div>
 </tr>
 
 <!-- Add replies here -->
@@ -83,8 +89,14 @@ while ($row=$stmt->fetch()) {
 
 <div class="thread-reply">
 <tr>
-    <td class="tuser"><?php echo $user_row["username"]; ?></td>
-    <td class="tdetails"><?php echo $row["details"]; ?></td>
+    <div class="post-ldata">
+        <td class="tuser"><?php echo $user_row["username"]; ?>
+        <img class="avatar-img" src="getimage.php?uid=<?php echo $user_row["uid"]; ?>"/>
+        </td>
+    </div>
+    <div class="post-rdata">
+        <td class="tdetails" valign="top"><?php echo $row["details"]; ?></td>
+    </div>
 </tr>
 </div>
 <?php

@@ -37,7 +37,7 @@ form {
 
 table {
     table-layout: fixed;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     margin: 0 auto;
 }
 
@@ -54,11 +54,12 @@ table {
 }
 
 .tuser {
-    width: 30%;
+    width: 20%;
 }
 
 .tdetails {
-    width: 70%;
+    width: 80%;
+    background-color:#bbd5e4;
 }
 
 #post-table {
@@ -74,3 +75,10 @@ table {
 h1 {
     display: inline;
 }
+
+.avatar-img {
+    display: block;
+    width: 120px;
+    height: 120px;
+}
+

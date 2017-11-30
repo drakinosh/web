@@ -45,7 +45,7 @@ $stmt->execute();
 
 ?>
 
-<table border="1">
+<table>
     <tr>
     <th class="tid">Id</th>
     <th class="ttitle">Title</th>
