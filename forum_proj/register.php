@@ -39,31 +39,50 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
-    // file input
-    // file size and not error
-    if ($_FILES["avatar"]["size"] != 0 && $_FILES["avatar"]["error"] == 0) {
-        $avatar_image = file_get_contents($_FILES["avatar"]["tmp_name"]);
-    }
-
     // insert user into dbase;
-    $stmt = $conn->prepare("INSERT INTO users (username, password, joined, avatar) VALUES (?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO users (username, password, joined) VALUES (?, ?, ?)");
     $stmt->bindParam(1, $param_username);
     $stmt->bindParam(2, $param_password);
     $stmt->bindParam(3, $param_date);
-    $stmt->bindParam(4, $param_avatar);
     
     $param_username = trim($_POST["username"]);
     $param_password = password_hash($password, PASSWORD_DEFAULT);
     $param_date = date("Y:m:d H:i:s");
-    $param_avatar = $avatar_image;
 
     if ($stmt->execute()) {
         header("location: login.php");
     } else {
         echo "Registration error.";
     }
+    $stmt = null;
 
-    $conn = null;
+    $stmt = $conn->prepare("SELECT * FROM users WHERE username=?");
+    $stmt->bindParam(1, $param_username);
+    $stmt->execute();
+    $row = $stmt->fetch();
+
+    $uid = $row["uid"];
+    unset($stmt);
+    unset($conn);
+
+    // file input
+    // file size and not error
+    // store file as avatar-uid.ext e.g. avatar-5.jph
+    if ($_FILES["avatar"]["size"] != 0 && $_FILES["avatar"]["error"] == 0) {
+        //$avatar_image = file_get_contents($_FILES["avatar"]["tmp_name"]);
+        $fil = pathinfo($_FILES["avatar"]["name"]);
+        $ext = $fil["extension"];
+        $ext = ".jpg"; // screw it, save as jpeg anyway
+        $name = "avatar-" . $uid . $ext;
+
+        $dest = "photos/user_avatars/" . $name;
+        move_uploaded_file($_FILES["avatar"]["tmp_name"], $dest);
+
+    } else {
+        print "Unable to store avatar.";
+    }
+
+
 }
 
 ?>

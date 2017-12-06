@@ -1,18 +1,19 @@
 <?php
 
-require_once 'config.php';
 
 $uid = $_GET["uid"];
 
-$stmt = $conn->prepare("SELECT * FROM users where uid = ?");
-$stmt->bindParam(1, $param_uid);
-$param_uid = $uid;
-$stmt->execute();
+$fname = "./photos/user_avatars/avatar-" . $uid  . ".jpg";
+$fp = fopen($fname, "rb");
 
-$row = $stmt->fetch();
-//<IMPORTANT> add checking, db connection?
+if (!$fp) {
+    print "Image error.";
+    exit;
+}
 
-header("Content-type: image/jpeg");
-echo $row["avatar"];
-unset($stmt);
-?>
+// send headers
+header("Content-Type: image/jpeg");
+header("Content-Length: " . filesize($fname));
+
+fpassthru($fp);
+exit;
