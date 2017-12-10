@@ -1,7 +1,7 @@
 <?php
 
 require_once 'config.php';
-
+require_once 'HTML/BBCodeParser2.php';
 session_start();
 
 if (!isset($_SESSION["username"]) || empty($_SESSION["username"])) {
@@ -37,6 +37,15 @@ $param_uid = $row["t_uid"];
 $stmt2->execute();
 $user_row = $stmt2->fetch();
 
+
+// check bbcode
+if (PARSE_BBCODE == 'TRUE') {
+    $config = parse_ini_file('HTML/BBCodeParser2.ini', true);
+    $options = $config['HTML_BBCodeParser2'];
+
+    $parser = new HTML_BBCodeParser2($options);
+}
+
 ?>
 <html>
 <head>
@@ -61,7 +70,12 @@ $user_row = $stmt2->fetch();
         </td>
     </div>
     <div>
-        <td class="tdetails" valign="top"><?php echo $row["details"]; ?></td>
+        <td class="tdetails" valign="top">
+        <?php
+        $parser->setText($row["details"]); $parser->parse();
+        echo $parser->getParsed();
+        ?>
+        </td>
     </div>
 </tr>
 
@@ -95,7 +109,11 @@ while ($row=$stmt->fetch()) {
         </td>
     </div>
     <div class="post-rdata">
-        <td class="tdetails" valign="top"><?php echo $row["details"]; ?></td>
+        <td class="tdetails" valign="top">
+        <?php 
+        $parser->setText($row["details"]); $parser->parse();
+        echo $parser->getParsed();
+        ?></td>
     </div>
 </tr>
 </div>

@@ -1,25 +1,12 @@
 <?php
 
 require_once 'config.php';
-require_once 'HTML/BBCodeParser2.php';
 
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    $conig = parse_ini_file('HTML/BBCodeParser2.ini', true);
-    $opts = $config['HTML_BBCodeParser2'];
-
-
-    $reply_details = $_POST["reply_details"];
     
-    if (PARSE_BBCODE == 'TRUE')  {
-        $parser = new HTML_BBCodeParser2($options=$opts);
-        $parser->setText($reply_details);
-        $parser->parse();
-        $reply_details = $parser->getParsed();
-    }
-
+    $reply_details = $_POST["reply_details"];
     $reply_uid = $_SESSION["uid"];
     $tid = $_POST["thread_id"];
 

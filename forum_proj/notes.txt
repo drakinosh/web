@@ -31,3 +31,7 @@ Need to add this to forum.
 
 Mon 11 Dec 2017 12:30:34 AM +0545
 BBCode added to forum.
+
+
+Mon 11 Dec 2017 01:16:46 AM +0545
+Fixed textarea formatting(edited class tdetail's style [ white-space: pre-wrap; ])
