@@ -111,6 +111,7 @@ while ($row=$stmt->fetch()) {
 if ($logged_in == 'T') {
 ?>
 <div class="post-reply-div">
+NOTE: BBCode is usable
 <form method="post" action="process_reply.php">
     <div>
         <label class="form-label">Reply:</label>

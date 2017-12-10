@@ -17,3 +17,17 @@ Inserting them directly into the databases was a bad idea in the first place.
 
 Will add simple bbcode and quoting features next.
 Also, need to amp up the style.
+
+
+Sun 10 Dec 2017 11:30:44 PM +0545
+Tried to install bbcode(pecl) - failed. Unmainatained package
+HTML_BBCodeParser2 is next. No docs avaiable, perusing the php file itself.
+
+
+Mon 11 Dec 2017 12:15:39 AM +0545
+HTML_BBCodeParser2 was a success, after locating the git page and downloading the config files
+Need to add this to forum.
+
+
+Mon 11 Dec 2017 12:30:34 AM +0545
+BBCode added to forum.
