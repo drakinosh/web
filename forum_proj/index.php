@@ -1,5 +1,6 @@
 <?php
 require_once 'config.php';
+require_once 'helpers/rep_count.php';
 ?>
 
 <html>
@@ -40,7 +41,7 @@ echo "<br>";
 
 <?php
 //$stmt = $conn->prepare("SELECT (tid, title, replies) FROM threads LIMIT=10");
-$stmt = $conn->prepare("SELECT tid, title, replies FROM threads");
+$stmt = $conn->prepare("SELECT tid, title FROM threads");
 $stmt->execute();
 
 ?>
@@ -58,10 +59,13 @@ while ($row = $stmt->fetch()) {
     <tr>
     <td><?php echo $row["tid"]; ?></td>
     <td><a href="view_thread.php?id=<?php echo $row["tid"]; ?>"><?php echo $row["title"]; ?></a>
-    <td><?php echo $row["replies"]; ?></td>
+    <td><?php echo getReplyCount($conn, $row["tid"]); ?></td>
     </tr>
 <?php
 }
+
+unset($stmt);
+
 ?>
 </table>
 </body>

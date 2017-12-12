@@ -35,3 +35,10 @@ BBCode added to forum.
 
 Mon 11 Dec 2017 01:16:46 AM +0545
 Fixed textarea formatting(edited class tdetail's style [ white-space: pre-wrap; ])
+
+
+Tue 12 Dec 2017 03:46:08 PM +0545
+Removed replies column from threads table;added counting mechanism;
+
+Errors: first line is always indented in posts.
+Concerns: relations between tables(simple id's have sufficed for now) - foreign keys?

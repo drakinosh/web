@@ -121,8 +121,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <div>
     <label class="form-label">Upload image:</label>
-    <!---<IMPORTANT> add filesize restriction -->
-    <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
+    <!---<IMPORTANT> add filesize restriction
+    200 kb max.
+    -->
+    <input type="hidden" name="MAX_FILE_SIZE" value="200000" />
     <input type="file" name="avatar">
     </div>
 
