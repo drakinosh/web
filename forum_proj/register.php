@@ -11,7 +11,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     //NOTE: assume username and pass is properly filled in
     //<IMPORTANT>
-    
+
+
+    // check CAPTCHA
+
     // check if username is taken
     $stmt = $conn->prepare("SELECT id FROM users WHERE username = ?");
     $stmt->bindParam(1, $param_username);
@@ -127,6 +130,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <input type="hidden" name="MAX_FILE_SIZE" value="200000" />
     <input type="file" name="avatar">
     </div>
+
+    <!-- captcha -->
 
     <div>
     <input type="submit" class="form-button" value="Submit">

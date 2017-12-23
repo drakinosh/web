@@ -54,16 +54,20 @@ table {
 }
 
 .tuser {
-    width: 20%;
+    width: 15%;
 }
 
 .tdetails {
-    width: 80%;
+    width: 85%;
     background-color:#bbd5e4;
+    padding-left: 5px;
 }
 
-#post-table {
-    width: 800;
+.post-table {
+    width: 1200px;
+    margin-left: 80px;
+    margin-right: 80px;
+    margin-bottom: 8px;
 }
 
 #post-reply-div {
@@ -81,4 +85,44 @@ h1 {
     width: 120px;
     height: 120px;
 }
-.tdetails { white-space: pre-wrap; }
+/*.tdetails { white-space: pre-wrap; } */
+
+.post-table td {
+    border-collapse: separate; /* allow spacing between cell borders */
+    border-spacing: 0 5px;
+}
+
+.post-date {
+    font-family: courier new;
+    font-size: 14px;
+}
+
+
+.thead, .edit-data {
+    font-weight: normal;
+    border: 1px solid #464138;
+    background-color: #666A7A;
+}
+
+.thead {
+    width: 15%;
+    border-right: 0;
+}
+
+.edit-data {
+    border-left: 0;
+}
+
+/* quotes */
+.quotable {
+    margin-left: 20px;
+    border: 0;
+    padding: 6;
+    border-spacing: 0;
+    border-collapse: separate;
+}
+
+.qcls {
+    border: 1px inset;
+    background: #EDE8E0;
+}

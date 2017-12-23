@@ -37,6 +37,7 @@ $param_uid = $row["t_uid"];
 $stmt2->execute();
 $user_row = $stmt2->fetch();
 
+$thread_title = $row["title"];
 
 // check bbcode
 if (PARSE_BBCODE == 'TRUE') {
@@ -62,7 +63,14 @@ if (PARSE_BBCODE == 'TRUE') {
 </div>
 
 
-<table border="1" id="post-table">
+<table border=1 id="first-post" class="post-table" cellspacing="0">
+<tr>
+    <td class="thead">
+    <p class="post-date"><?php echo $row["pub_date"]; ?></p>
+    </td>
+    <td class="edit-data">
+    </td>
+</tr>
 <tr>
     <div class="post-ldata">
         <td class="tuser"><?php echo $user_row["username"]; ?>
@@ -71,14 +79,17 @@ if (PARSE_BBCODE == 'TRUE') {
     </div>
     <div>
         <td class="tdetails" valign="top">
-        <?php
-        $parser->setText($row["details"]); $parser->parse();
-        echo $parser->getParsed();
-        ?>
+            <h3 class="post-thread-title"><?php echo $row["title"]; ?></h3>
+            <br>
+            <?php
+            $text=strip_tags($row["details"]); // filter user-input HTML and PHP tags
+            $parser->setText($text); $parser->parse();
+            echo nl2br($parser->getParsed());
+            ?>
         </td>
     </div>
 </tr>
-
+</table>
 <!-- Add replies here -->
 
 <?php
@@ -101,7 +112,15 @@ while ($row=$stmt->fetch()) {
     $user_row = $stmt2->fetch();
 ?>
 
+<table class="post-table" id="post-reply" cellspacing="0" border=1>
 <div class="thread-reply">
+<tr>
+    <td class="thead">
+    <p class="post-date"><?php echo $row["pub_date"]; ?></p>
+    </td>
+    <td class="edit-data">
+    </td>
+</tr>
 <tr>
     <div class="post-ldata">
         <td class="tuser"><?php echo $user_row["username"]; ?>
@@ -110,13 +129,18 @@ while ($row=$stmt->fetch()) {
     </div>
     <div class="post-rdata">
         <td class="tdetails" valign="top">
-        <?php 
-        $parser->setText($row["details"]); $parser->parse();
-        echo $parser->getParsed();
-        ?></td>
+            <h3 class="thread-title-post" valign="top">Re: <?php echo $thread_title; ?></h3>
+            <br>
+            <?php
+            $text = strip_tags($row["details"]);
+            $parser->setText($text); $parser->parse();
+            echo nl2br($parser->getParsed());
+            ?>
+        </td>
     </div>
 </tr>
 </div>
+</table>
 <?php
 }
 ?>

@@ -42,3 +42,10 @@ Removed replies column from threads table;added counting mechanism;
 
 Errors: first line is always indented in posts.
 Concerns: relations between tables(simple id's have sufficed for now) - foreign keys?
+
+
+Sat 23 Dec 2017 06:32:25 PM +0545
+Hacked bbcode parser to create some terrible code.
+Needed to suppot [quote name="xx"] tags in bbcode. Could not do it with HTML2BBCode vanilla.
+New format: [bbquote][bbname]xxx[/bbname] fkajf tex this is text [/bbquote]
+Also, improved the style a little bit {model: animesuki}
