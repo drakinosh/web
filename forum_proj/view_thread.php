@@ -50,9 +50,10 @@ if (PARSE_BBCODE == 'TRUE') {
 ?>
 <html>
 <head>
-<title><?php echo htmlspecialchars($row["title"]); ?></title>
-<meta charset="utf-8">
-<link rel="stylesheet" type="text/css" href="style.css">
+    <title><?php echo htmlspecialchars($row["title"]); ?></title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script type="text/javascript" src="quote_script.js"></script>
 </head>
 <body>
 
@@ -73,7 +74,7 @@ if (PARSE_BBCODE == 'TRUE') {
 </tr>
 <tr>
     <div class="post-ldata">
-        <td class="tuser"><?php echo $user_row["username"]; ?>
+        <td class="tuser"><a href="member.php?uid="<?php echo $user_row["uid"] . ">" . $user_row["username"]; ?></a>
         <img src="getimage.php?uid=<?php echo $row["t_uid"]; ?>" class="avatar-img">
         </td>
     </div>
@@ -123,7 +124,7 @@ while ($row=$stmt->fetch()) {
 </tr>
 <tr>
     <div class="post-ldata">
-        <td class="tuser"><?php echo $user_row["username"]; ?>
+        <td class="tuser"><a href="member.php?uid="<?php echo $user_row["uid"] . ">" . $user_row["username"]; ?></a>
         <img class="avatar-img" src="getimage.php?uid=<?php echo $user_row["uid"]; ?>"/>
         </td>
     </div>
@@ -134,8 +135,16 @@ while ($row=$stmt->fetch()) {
             <?php
             $text = strip_tags($row["details"]);
             $parser->setText($text); $parser->parse();
-            echo nl2br($parser->getParsed());
+            $final =  nl2br($parser->getParsed());
+            echo $final;
+
+            $pure = $text;
+
             ?>
+            <div class="butDiv">
+            <img src="site_images/quote_but.png"
+                 onclick="quoteFill('<?php echo $user_row["username"];?>', String.raw `<?php echo $pure; ?>`);">
+            </div> 
         </td>
     </div>
 </tr>
@@ -157,7 +166,7 @@ NOTE: BBCode is usable
 <form method="post" action="process_reply.php">
     <div>
         <label class="form-label">Reply:</label>
-        <textarea rows="10" cols="50" class="form-body" name="reply_details"></textarea>
+        <textarea rows="10" cols="50" id="thread-reply" class="form-body" name="reply_details"></textarea>
     </div>
     <input type="hidden" value="<?php echo $id; ?>" name="thread_id">
     <div>

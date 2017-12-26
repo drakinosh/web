@@ -15,7 +15,7 @@ require_once 'helpers/rep_count.php';
 <?php
 session_start();
 if (!empty($_SESSION["username"])) {
-    echo "<strong id='username'>".trim($_SESSION["username"])."</strong>";
+    echo "<a id='username' href='member.php?uid=" . $_SESSION["uid"] . "'><strong>".$_SESSION["username"]."</strong></a>\n";
     echo "&nbsp;&nbsp;";
     echo "<a id='link' href='logout.php'>Logout</a>";
 } else {

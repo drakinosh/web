@@ -68,6 +68,7 @@ table {
     margin-left: 80px;
     margin-right: 80px;
     margin-bottom: 8px;
+    position: relative; /* to put quote but at bottom right *//
 }
 
 #post-reply-div {
@@ -133,3 +134,8 @@ h1 {
     background: #FFFFFF;
 }
 
+.butDiv{
+    position: absolute; /* depends on pos:relative of post-table */
+    bottom: 0;
+    right: 0;
+}
