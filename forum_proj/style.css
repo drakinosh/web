@@ -126,3 +126,10 @@ h1 {
     border: 1px inset;
     background: #EDE8E0;
 }
+
+/* for entity table */
+.entity-table {
+    width: 800px;
+    background: #FFFFFF;
+}
+

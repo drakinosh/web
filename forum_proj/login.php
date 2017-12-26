@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!empty($username) && !empty($password)) {
 
         #<IMPORTANT> Have skipped checking
-        $stmt = $conn->prepare("SELECT username, password, uid FROM users where username = ?");
+        $stmt = $conn->prepare("SELECT username, password, uid, level FROM users where username = ?");
         $stmt->bindParam(1, $param_username);
 
         $param_username = $username;
@@ -27,12 +27,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 $hashed_pass = $row["password"];
                 $uid = $row["uid"];
+                $user_level = $row["level"];
 
                 if (password_verify($password, $hashed_pass)) {
 
                     session_start();
                     $_SESSION["username"] = $username;
                     $_SESSION["uid"] = $uid;
+                    $_SESSION["level"] = $user_level;
                     header("location: index.php");
                 } else {
                     print ("Invalid password.");
