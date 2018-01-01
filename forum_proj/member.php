@@ -3,6 +3,7 @@
 session_start();
 
 require_once 'config.php';
+include 'helpers/utils.php';
 
 # prevent non-users from seeing 
 if (!isset($_SESSION["uid"])) {
@@ -42,6 +43,20 @@ echo "<a id='username' href='member.php?uid=" . $_SESSION["uid"] . "'><strong>".
 </div>
 
 <h3> Stats for <?php echo $user_uname; ?> </h3>
+
+<div class="user-data">
+    <h4>Joined:</h4> <?php echo $user_row["joined"]; ?>
+    <h4>Posts:</h4> <?php echo getUserPosts($conn, $user_row["uid"]); ?>
+</div>
+
+<?php
+if ($user_row["uid"] == $_SESSION["uid"]) {
+?>
+    <a href="read_pm.php">Inbox</a>
+    <a href="send_pm.php">Send mail</a>
+<?php
+}
+?>
 
 </body>
 </html>

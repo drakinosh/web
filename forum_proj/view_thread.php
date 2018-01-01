@@ -74,7 +74,7 @@ if (PARSE_BBCODE == 'TRUE') {
 </tr>
 <tr>
     <div class="post-ldata">
-        <td class="tuser"><a href="member.php?uid="<?php echo $user_row["uid"] . ">" . $user_row["username"]; ?></a>
+        <td class="tuser"><a href="member.php?uid=<?php echo $user_row["uid"]; ?>"><?php echo  $user_row["username"]; ?></a>
         <img src="getimage.php?uid=<?php echo $row["t_uid"]; ?>" class="avatar-img">
         </td>
     </div>
@@ -124,7 +124,7 @@ while ($row=$stmt->fetch()) {
 </tr>
 <tr>
     <div class="post-ldata">
-        <td class="tuser"><a href="member.php?uid="<?php echo $user_row["uid"] . ">" . $user_row["username"]; ?></a>
+        <td class="tuser"><a href="member.php?uid=<?php echo $user_row["uid"]; ?>"><?php echo $user_row["username"]; ?></a>
         <img class="avatar-img" src="getimage.php?uid=<?php echo $user_row["uid"]; ?>"/>
         </td>
     </div>

@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     $param_username = trim($_POST["username"]);
     $param_password = password_hash($password, PASSWORD_DEFAULT);
-    $param_date = date("Y:m:d H:i:s");
+    $param_date = date("Y-m-d");
 
     if ($stmt->execute()) {
         header("location: login.php");

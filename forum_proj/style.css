@@ -139,3 +139,20 @@ h1 {
     bottom: 0;
     right: 0;
 }
+
+.t-pm-sender {
+    width: 20%;
+}
+
+.t-pm-subject {
+    width: 60%;
+}
+
+.t-pm-subject:hover {
+    background-color: #E9EBF2;
+}
+
+.t-pm-sent {
+    width: 20%;
+}
+
