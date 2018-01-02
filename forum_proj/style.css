@@ -156,3 +156,31 @@ h1 {
     width: 20%;
 }
 
+div h4 {
+    display: inline;
+}
+
+.user-data {
+    margin: 0 auto;
+    width: 640px;
+}
+
+.mem-div {
+    display: inline-block;
+}
+
+#mem-pane {
+    float: left;
+    position: absolute;
+    left: 16px;
+}
+
+#inbox-table {
+    width: 640px;
+}
+
+.div-mess {
+    text-align: center;
+    margin: 0 auto;
+    border: 1px solid grey;
+}

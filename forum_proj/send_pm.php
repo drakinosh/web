@@ -87,7 +87,8 @@ echo "<strong id='username'>".$_SESSION["username"]."</strong>\n";
     <input type="text" name="recipient" class="form-field" value="<?php echo $recipient ?>">
     </div>
     
-    <div class="form-label">Subject:</label>
+    <div>
+    <label class="form-label">Subject:</label>
     <input type="text" name="subject" class="form-field" value="<?php echo $subject; ?>">
     </div>
     

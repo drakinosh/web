@@ -1,10 +1,7 @@
 <?php
-#require_once 'config.php';
-#require_once 'helpers/utils.php';
-# ^ these are already required by the member.php page
-
-#session_start();
-#^ the session has already been started
+require_once 'config.php';
+require_once 'helpers/utils.php';
+session_start();
 
 if (empty($_SESSION["uid"])) {
     header("location: index.php");
@@ -18,8 +15,28 @@ $stmt->bindParam(1, $uid);
 
 $stmt->execute();
 ?>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Inbox</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
 
-<table border="1" id="inbox-table">
+<?php
+echo "<strong id='username'>".$_SESSION["username"]."</strong>\n";
+?>
+
+
+<!-- KU header -->
+<div class="page-head">
+    <a href="index.php"><img src="ku_logo.png"></a>
+    <h1>Kathmandu University Forums</h1>
+</div>
+
+<h2>Inbox</h2>
+
+<table border="1">
     <th>Sender</th>
     <th>Subject</th>
     <th>Sent</th>
@@ -38,4 +55,5 @@ while ($row = $stmt->fetch()) {
 <?php
 }
 ?>
-</table>
+</body>
+</html>
