@@ -35,6 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         $self = 'T';
     }
 }
+
 ?>
 <html>
 <head>
@@ -66,7 +67,13 @@ echo "<a id='username' href='member.php?uid=" . $_SESSION["uid"] . "'><strong>".
         <a href="member.php?opt=1&uid=<?php echo $uid; ?>">Inbox</a>
         <br>
         <a href="send_pm.php">Send mail</a>
+        <br>
+        <?php if (isset($_SESSION["level"]) && $_SESSION["level"] == 'A') {
+                echo "<a href='admin_page.php'>Admin Page</a>";
+              }
+        ?>
         </div>
+
     <?php
     }
     ?>

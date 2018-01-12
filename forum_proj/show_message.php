@@ -27,6 +27,11 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         print "Insufficient privilege to access message.";
         exit;
     }
+
+    // mark as read
+    $stmt2 = $conn->prepare("UPDATE messages SET uid_2_read='T' WHERE id=?");
+    $stmt2->bindParam(1, $id);
+    $stmt2->execute();
 ?>
 <html>
 <head>
@@ -55,7 +60,9 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     </div>
 </div>
 
-<a href="#">Reply</a> <!-- add call to send_pm with params later -->
+<a href="send_pm.php?recipient=<?php echo getUname($conn, $row["uid_1"]); ?>&subject=<?php echo $row["title"]; ?>">
+Reply
+</a>
 </body>
 </html>
 <?php

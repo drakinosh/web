@@ -29,7 +29,7 @@ echo "<strong id='username'>".$_SESSION["username"]."</strong>\n";
 </div>
 
 
-<h2>Admin Operations Panel</h2>
+<h2 style="text-align: center;">Admin Operations Panel</h2>
 
 <!-- Allow admin to ban users and delete posts directly -->
 

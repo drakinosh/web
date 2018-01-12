@@ -2,7 +2,7 @@ body {
     background-color: #6577C7;
 }
 
-form {
+form:not(.link-form) {
     margin: 0 auto;
     width: 640px;
     padding: 1em;
@@ -35,10 +35,14 @@ form {
 }
 
 
-table {
+table{
     table-layout: fixed;
     /* border: 1px solid black; */
     margin: 0 auto;
+}
+
+th {
+    background-color: grey;
 }
 
 .tid {
@@ -148,13 +152,26 @@ h1 {
     width: 60%;
 }
 
-.t-pm-subject:hover {
+.t-pm-sent {
+    width: 14%;
+}
+
+.t-pm-check {
+    width: 6%;
+}
+
+#inbox-table tr:hover {
     background-color: #E9EBF2;
 }
 
-.t-pm-sent {
-    width: 20%;
+#inbox-table th {
+    background-color: grey;
 }
+
+.mess-read {
+    background-color: #3E57AB;
+}
+
 
 div h4 {
     display: inline;
@@ -177,10 +194,16 @@ div h4 {
 
 #inbox-table {
     width: 640px;
+    background-color: #9BBBF0;
 }
 
 .div-mess {
     text-align: center;
     margin: 0 auto;
-    border: 1px solid grey;
+    border: 1px solid white;
+}
+
+.attach-div {
+    margin: 0px;
+    padding: 0px;
 }

@@ -14,6 +14,15 @@ $recipient = "";
 $message = "";
 $subject = "";
 
+# for replying - fill the fields
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+    $recipient = trim($_GET["recipient"]);
+    $subject = "Re: " . trim($_GET["subject"]);
+
+    // forgo detailed-error checking; assume both fields
+    // are filled
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (empty($_POST["recipient"]) || empty($_POST["subject"]) || empty($_POST["message"])) {

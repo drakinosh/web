@@ -54,3 +54,18 @@ Also, improved the style a little bit {model: animesuki}
 Tue 26 Dec 2017 10:13:33 PM +0545
 Added quoting button sucessfully(javascript). Used raw strings.
 
+
+Fri 12 Jan 2018 04:15:13 PM +0545
+user priv levels - A -> admin
+                   M -> moderator
+                   U -> common user i.e. pleb
+                   B -> banned
+also enabled file attachments
+
+
+Fri 12 Jan 2018 07:01:56 PM +0545
+Improved inbox features (marking, deleting, and so on).
+Enabled attachments.
+To do next:
+    -limit number of characters in username
+    -improve style
