@@ -29,7 +29,7 @@ $stmt->execute();
     <br>
 
     <table border="1" id="mail-table">
-        <th>Sender</th>
+        <th>Sendee</th>
         <th>Subject</th>
         <th>Sent</th>
         <th></th>
