@@ -28,7 +28,7 @@ CREATE TABLE `messages` (
   `uid_2` int(11) NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `body` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `uid_1_read` char(1) COLLATE utf8mb4_unicode_ci DEFAULT 'F',
+  `uid_1_read` char(1) COLLATE utf8mb4_unicode_ci DEFAULT 'T',
   `uid_2_read` char(1) COLLATE utf8mb4_unicode_ci DEFAULT 'F',
   `send_date` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -41,7 +41,7 @@ CREATE TABLE `messages` (
 
 LOCK TABLES `messages` WRITE;
 /*!40000 ALTER TABLE `messages` DISABLE KEYS */;
-INSERT INTO `messages` VALUES (1,1,-1,'Test','Alpha Tango.\r\nFruity Mango.','F','T','2018-01-01 23:02:18'),(2,1,1,'Test','Alpha Tango.\r\nFruity Mango.','F','T','2018-01-01 23:02:39'),(3,1,1,'Test','Alpha tango.\r\nFruity mango.\r\nGeorge Carlin.','F','T','2018-01-01 23:02:53'),(4,1,1,'Test','sdfsdagsdf','F','T','2018-01-01 23:03:13'),(5,1,4,'Consider.','Let\'s\r\ndo\r\nAnil.','F','F','2018-01-01 23:18:50'),(6,4,-1,'toop','ma top khanxu','F','F','2018-01-01 23:19:50'),(7,1,1,'watashi','dwardwr \r\nfe\r\nchecking this\r\nMutltiple lines are very long. I see that the program is what it is. See it for what it is .\r\nMulti-size.\r\n\r\nCHECK CHECL                           CHECK                        CHECK                         CHECK       CHECK','F','T','2018-01-02 18:07:22'),(8,3,1,'test_2','Test.\r\nTest.\r\nTest.\r\nWhat the hell.\r\nyep.\r\nRWBY.','F','T','2018-01-03 00:04:20');
+INSERT INTO `messages` VALUES (1,1,-1,'Test','Alpha Tango.\r\nFruity Mango.','F','T','2018-01-01 23:02:18'),(2,1,1,'Test','Alpha Tango.\r\nFruity Mango.','F','T','2018-01-01 23:02:39'),(3,1,1,'Test','Alpha tango.\r\nFruity mango.\r\nGeorge Carlin.','F','T','2018-01-01 23:02:53'),(4,1,1,'Test','sdfsdagsdf','F','T','2018-01-01 23:03:13'),(5,1,4,'Consider.','Let\'s\r\ndo\r\nAnil.','F','T','2018-01-01 23:18:50'),(6,4,-1,'toop','ma top khanxu','F','F','2018-01-01 23:19:50'),(7,1,1,'watashi','dwardwr \r\nfe\r\nchecking this\r\nMutltiple lines are very long. I see that the program is what it is. See it for what it is .\r\nMulti-size.\r\n\r\nCHECK CHECL                           CHECK                        CHECK                         CHECK       CHECK','F','T','2018-01-02 18:07:22'),(8,3,1,'test_2','Test.\r\nTest.\r\nTest.\r\nWhat the hell.\r\nyep.\r\nRWBY.','F','T','2018-01-03 00:04:20');
 /*!40000 ALTER TABLE `messages` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -85,6 +85,7 @@ CREATE TABLE `reports` (
   `pid` int(11) NOT NULL,
   `p_tid` int(11) NOT NULL,
   `read` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'F',
+  `rep_uid` int(11) NOT NULL,
   PRIMARY KEY (`pid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -95,7 +96,7 @@ CREATE TABLE `reports` (
 
 LOCK TABLES `reports` WRITE;
 /*!40000 ALTER TABLE `reports` DISABLE KEYS */;
-INSERT INTO `reports` VALUES (75,7,'F'),(76,8,'F');
+INSERT INTO `reports` VALUES (3,1,'F',1),(28,4,'F',1);
 /*!40000 ALTER TABLE `reports` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -115,7 +116,7 @@ CREATE TABLE `threads` (
   `pub_date` datetime NOT NULL,
   `isSticky` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'N',
   PRIMARY KEY (`tid`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151,7 +152,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'sanskar','$2y$10$5sscXrWkUXIDnAaJcwXYM.NyoeIp4HLYWmu2k.RB2CAKv792H9NKC','2017-12-06','A'),(2,'dovahkiin','$2y$10$pSewtV4sy.F8fGFrQcCOZevjL8CfD.pKatWFz7twKmbg5sdrHIP1G','2017-12-06','U'),(3,'karan','$2y$10$CzyRQDJmNszm7DHhD.mYqeorZ.ymYBIybisBgCUfseOq2YHCVa5T2','2017-12-11','U'),(4,'red_boy','$2y$10$gYGwfG/tQOWSm4WEmQH9GOJmzp.Ndht5IlB1n8jO.y2e4rRotzz66','2018-01-01','U');
+INSERT INTO `users` VALUES (1,'sanskar','$2y$10$5sscXrWkUXIDnAaJcwXYM.NyoeIp4HLYWmu2k.RB2CAKv792H9NKC','2017-12-06','A'),(2,'dovahkiin','$2y$10$pSewtV4sy.F8fGFrQcCOZevjL8CfD.pKatWFz7twKmbg5sdrHIP1G','2017-12-06','U'),(3,'karan','$2y$10$CzyRQDJmNszm7DHhD.mYqeorZ.ymYBIybisBgCUfseOq2YHCVa5T2','2017-12-11','U'),(4,'red_boy','$2y$10$gYGwfG/tQOWSm4WEmQH9GOJmzp.Ndht5IlB1n8jO.y2e4rRotzz66','2018-01-01','B');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -164,4 +165,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-01-12 19:01:40
+-- Dump completed on 2018-01-13 17:12:29

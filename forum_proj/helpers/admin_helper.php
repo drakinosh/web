@@ -12,11 +12,17 @@ function createEntityTable($table) {
         echo "<th>tid</th>\n";
         echo "<th>title</th>\n";
         echo "<th>date</th>\n";
+    } else if ($table == "posts") {
+        echo "<table border='1' id='postTable' class='entity-table'>\n";
+        echo "<th>pid</th>\n";
+        echo "<th>thread_id</th>\n";
+        echo "<th>date</th>\n";
     }
 }
 
-function displayEntityValues($table, $execStatement) {
-
+function displayEntityValues($table, $execStatement, $repArray)
+{
+    // repArray -> array containing all reported post ids
 
     if ($table == "users") {
 
@@ -31,6 +37,23 @@ function displayEntityValues($table, $execStatement) {
             echo "<tr>\n";
             echo "<td class='idh'>" . $row["tid"] . "</td>\n";
             echo "<td class='title'>" . $row["title"]. "</td>\n";
+            echo "<td class='date'>" . $row["pub_date"] . "</td>\n";
+            echo "</tr>\n";
+        }
+    } else if ($table == "posts") {
+
+        # also, highlight reported posts
+        while ($row = $execStatement->fetch()) {
+            echo "<tr>\n";
+            if (!in_array($row["pid"], $repArray)) {
+                echo "<td class='idh'>" . $row["pid"] . "</td>\n";
+            } else {
+                $l_open = "<a href='../view_thread.php?id=" . $row["p_tid"] . "#post-" . $row["pid"] . "'>";
+                echo "<td class='idh reported'>" . $l_open . $row["pid"] . "</a>\n";
+                echo "</td>\n";
+            }
+
+            echo "<td class='thread_id'>" . $row["p_tid"] . "</td>\n";
             echo "<td class='date'>" . $row["pub_date"] . "</td>\n";
             echo "</tr>\n";
         }
@@ -50,6 +73,17 @@ function deleteEntity($table, $e_id, $conn) {
         print "adminhelper: database error";
     }
 
+    unset($stmt);
+}
+
+function changeUserPriv($u_id, $conn, $level)
+{
+    $stmt = $conn->prepare("UPDATE users SET level=? WHERE uid=?");
+    $stmt->bindParam(1, $level);
+    $stmt->bindParam(2, $u_id);
+    if (!$stmt->execute()) {
+        print "adminhelper: database error";
+    }
     unset($stmt);
 }
 ?>

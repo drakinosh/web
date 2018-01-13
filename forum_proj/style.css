@@ -211,3 +211,7 @@ div h4 {
     margin: 0px;
     padding: 0px;
 }
+
+.reported {
+    background-color: red;
+}

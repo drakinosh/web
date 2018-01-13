@@ -42,13 +42,18 @@ echo "<strong id='username'>".$_SESSION["username"]."</strong>\n";
 
 <label>Id:</label>
 <input type="text" name="e_id"></input>
+<input type="submit" name="populate" value="Populate"></input>
+
 Action:
 <select id="a_list_2" name="a_action">
     <option value="v_ban" name="o_ban">ban</option>
+    <option value="v_unban" name="o_unban">unban</option>
     <option value="v_del" name="o_del">delete</option>
+    <option value="v_mmod" name="o_mmod">make mod</option>
 </select>
 
-<input type="submit" name="populate" value="Populate"></input>
+<br>
+
 <input type="submit" name="execute" value="Execute"></input>
 </form>
 
@@ -74,6 +79,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
             $stmt_1 = $conn->prepare("SELECT * FROM " . $table);
+            $stmt_r = $conn->prepare("SELECT pid FROM reports");
+            if (!$stmt_r->execute()) {
+                print "Database error.";
+                exit;
+            }
+            $rep_array = array();
+            while ($row= $stmt_r->fetch()) {
+                array_push($rep_array, $row["pid"]);
+            }
+
+            unset($stmt_r);
 
             if (!$stmt_1->execute()) {
                 print "Database error.";
@@ -82,9 +98,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             createEntityTable($table);
             # create table to populate values
+            #
+        
             
             #populate
-            displayEntityValues($table, $stmt_1);
+            displayEntityValues($table, $stmt_1, $rep_array);
             unset($stmt_1);
 
         } else {
@@ -107,6 +125,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($a_action  == "v_del") {
             deleteEntity($table, $e_id, $conn);
+        } else if ($a_action == "v_ban") {
+            if ($table == "users") {
+                changeUserPriv($e_id, $conn, 'B');
+            }
+        } else if ($a_action == "v_unban") {
+            if ($table == "users") {
+                changeUserPriv($e_id, $conn, 'U');
+            }
+        } else if ($a_action == "v_mmod") {
+            if ($table == "users") {
+                changeUserPriv($e_id, $conn);
+            }
         }
     }
 }
