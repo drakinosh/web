@@ -14,17 +14,16 @@ if (empty($_SESSION["uid"])) {
 
 // read mail
 $uid = $_SESSION["uid"];
-$stmt = $conn->prepare("SELECT * FROM messages WHERE uid_2 = ?");
+$stmt = $conn->prepare("SELECT * FROM messages WHERE uid_1 = ?");
 // user2 is the reciever
 $stmt->bindParam(1, $uid);
 
 $stmt->execute();
 ?>
 
-<form class="mail-form" action="inbox_proc.php" method="post">
+<form class="mail-form" action="outbox_proc.php" method="post">
     <div class="mail-buttons">
         <input name="delete_mail" type="submit" value="Delete">
-        <input name="mark_as_read" type="submit" value="Mark as Read">
     </div>
 
     <br>
@@ -38,15 +37,9 @@ $stmt->execute();
     while ($row = $stmt->fetch()) {
     ?>
         
-        <?php
-        if ($row["uid_2_read"] == 'F') {
-            echo "<tr>";
-        } else {
-            echo "<tr class='mess-read'>";
-        }
-        ?>
-        <td class="t-pm-sender">
-            <a style="text=decoration:none;" href="member.php?uid=<?php echo $row["uid_1"]; ?>">
+        <tr class='mess-read'>
+        <td class="t-pm-sendee">
+            <a style="text=decoration:none;" href="member.php?uid=<?php echo $row["uid_2"]; ?>">
             <?php echo getUname($conn, $row["uid_1"]); ?>
             </a>
         </td>

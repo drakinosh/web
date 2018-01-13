@@ -4,6 +4,8 @@ require_once "config.php";
 
 session_start();
 
+// disallow if not logged in
+
 if (empty($_SESSION["uid"])) {
     header("location: index.php");
     exit;
@@ -15,12 +17,12 @@ $message = "";
 $subject = "";
 
 # for replying - fill the fields
-if ($_SERVER["REQUEST_METHOD"] == "GET") {
+if ($_SERVER["REQUEST_METHOD"] == "GET" &&
+    isset($_GET["recipient"]) && isset($_GET["subject"])) {
+
     $recipient = trim($_GET["recipient"]);
     $subject = "Re: " . trim($_GET["subject"]);
 
-    // forgo detailed-error checking; assume both fields
-    // are filled
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -80,7 +82,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 
 <?php
-echo "<strong id='username'>".$_SESSION["username"]."</strong>\n";
+echo "<a id='username' href='member.php?uid=" . $_SESSION["uid"] . "'><strong>".$_SESSION["username"]."</strong></a>\n";
+echo "&nbsp;&nbsp;";
+echo "<a id='link' href='logout.php'>Logout</a>";
 ?>
 
 

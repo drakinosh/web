@@ -47,6 +47,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
 <?php 
 echo "<a id='username' href='member.php?uid=" . $_SESSION["uid"] . "'><strong>".$_SESSION["username"]."</strong></a>";
+echo "&nbsp;&nbsp;";
+echo "<a id='link' href='logout.php'>Logout</a>";
 ?>
 
 <div class="page-head">
@@ -66,7 +68,9 @@ echo "<a id='username' href='member.php?uid=" . $_SESSION["uid"] . "'><strong>".
         <!--<a href="read_pm.php">Inbox</a> -->
         <a href="member.php?opt=1&uid=<?php echo $uid; ?>">Inbox</a>
         <br>
-        <a href="send_pm.php">Send mail</a>
+        <a href="member.php?opt=2&uid=<?php echo $uid;  ?>">Outbox</a>
+        <br>
+        <a href="send_pm.php">Send PM</a>
         <br>
         <?php if (isset($_SESSION["level"]) && $_SESSION["level"] == 'A') {
                 echo "<a href='admin_page.php'>Admin Page</a>";
@@ -90,6 +94,8 @@ echo "<a id='username' href='member.php?uid=" . $_SESSION["uid"] . "'><strong>".
 
     if ($self == 'T' && $opt == '1') {
         include 'read_pm.php';
+    } else if ($self == 'T' && $opt == '2') {
+        include 'read_sent_pm.php';
     }
     ?>
     </div>

@@ -144,7 +144,7 @@ h1 {
     right: 0;
 }
 
-.t-pm-sender {
+.t-pm-sender, .t-pm-sendee {
     width: 20%;
 }
 
@@ -160,11 +160,15 @@ h1 {
     width: 6%;
 }
 
-#inbox-table tr:hover {
+#mail-table {
+    table-layout: auto;
+}
+
+#mail-table tr:hover {
     background-color: #E9EBF2;
 }
 
-#inbox-table th {
+#mail-table th {
     background-color: grey;
 }
 
