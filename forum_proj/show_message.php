@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     </div>
 </div>
 
-<a href="send_pm.php?recipient=<?php echo getUname($conn, $row["uid_1"]); ?>&subject=<?php echo $row["title"]; ?>">
+<a href="send_pm.php?recipient=<?php echo getUname($conn, $row["uid_1"]); ?>&subject=<?php echo $row["title"]; ?>&reply=true">
 Reply
 </a>
 </body>

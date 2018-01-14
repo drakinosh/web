@@ -135,7 +135,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         } else if ($a_action == "v_mmod") {
             if ($table == "users") {
-                changeUserPriv($e_id, $conn);
+                changeUserPriv($e_id, $conn, 'M');
             }
         }
     }

@@ -2,6 +2,7 @@
 
 require_once 'config.php';
 require_once 'HTML/BBCodeParser2.php';
+require_once 'helpers/utils.php';
 session_start();
 
 if (!isset($_SESSION["username"]) || empty($_SESSION["username"])) {
@@ -69,12 +70,14 @@ if (PARSE_BBCODE == 'TRUE') {
     <td class="thead">
     <p class="post-date"><?php echo $row["pub_date"]; ?></p>
     </td>
-    <td class="edit-data">
-    </td>
+    <td class="post-num-data">
+    <p class="post-num">#1</p>
+   </td>
 </tr>
 <tr>
     <div class="post-ldata">
         <td class="tuser" valign="top"><a href="member.php?uid=<?php echo $user_row["uid"]; ?>"><?php echo  $user_row["username"]; ?></a>
+        <?php printStat($user_row["level"]); ?>
         <img src="getimage.php?uid=<?php echo $row["t_uid"]; ?>" class="avatar-img">
         </td>
     </div>
@@ -103,7 +106,10 @@ $stmt->bindParam(1, $param_p_tid);
 $param_p_tid = $id; # id of current thread;
 $stmt->execute();
 
+$i = 1;
 while ($row=$stmt->fetch()) {
+    
+    $i += 1;    // for local post numbers
 
     $stmt2 = $conn->prepare("SELECT * FROM users WHERE uid = ?");
     $stmt2->bindParam(1, $param_p_uid);
@@ -111,6 +117,11 @@ while ($row=$stmt->fetch()) {
     $stmt2->execute();
 
     $user_row = $stmt2->fetch();
+    # only admins and mods can see this. 
+    # for convenience, not security
+    if (isset($_SESSION["uid"]) && $_SESSION["level"] == "A" || $_SESSION["level"] == "M") {
+        echo "<p class='post-global-num'>" . $row["pid"] . "</p>";
+    }
 ?>
 
     <table class="post-table" id="post-<?php echo $row["pid"]; ?>" cellspacing="0" border=1>
@@ -119,12 +130,15 @@ while ($row=$stmt->fetch()) {
     <td class="thead">
     <p class="post-date"><?php echo $row["pub_date"]; ?></p>
     </td>
-    <td class="edit-data">
+    <td class="post-num-data">
+    <p class="post-num">#<?php echo $i ?></p>
+
     </td>
 </tr>
 <tr>
     <div class="post-ldata">
         <td class="tuser" valign="top"><a href="member.php?uid=<?php echo $user_row["uid"]; ?>"><?php echo $user_row["username"]; ?></a>
+        <?php printStat($user_row["level"]) ?>
         <img class="avatar-img" src="getimage.php?uid=<?php echo $user_row["uid"]; ?>"/>
         </td>
     </div>
@@ -141,6 +155,10 @@ while ($row=$stmt->fetch()) {
             $pure = $text;
 
             ?>
+            <!-- Compulsor space after text -->
+
+            <br>
+
             <div class="butDiv">
             <img src="site_images/quote_but.png"
                  onclick="quoteFill('<?php echo $user_row["username"];?>', String.raw `<?php echo $pure; ?>`);">

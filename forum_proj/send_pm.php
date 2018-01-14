@@ -17,11 +17,14 @@ $message = "";
 $subject = "";
 
 # for replying - fill the fields
-if ($_SERVER["REQUEST_METHOD"] == "GET" &&
-    isset($_GET["recipient"]) && isset($_GET["subject"])) {
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
     $recipient = trim($_GET["recipient"]);
-    $subject = "Re: " . trim($_GET["subject"]);
+    $subject = trim($_GET["subject"]);
+
+    if (isset($_GET["reply"]) && ($_GET["reply"] == "true")) {
+        $subject = "Re: " . $subject;
+    }
 
 }
 

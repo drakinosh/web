@@ -1,0 +1,1 @@
+Requires gd for captcha

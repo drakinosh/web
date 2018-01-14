@@ -1,4 +1,7 @@
 function quoteFill(name, text) {
-    document.getElementById("thread-reply").value = "[bbquote][bbname] " + name + "[/bbname]" + text + "[/bbquote]";
-    document.getElementById("thread-reply").scrollIntoView();
+    // appends to the input field
+    var elem = document.getElementById("thread-reply");
+    var old_val = elem.value;
+    elem.value = old_val + "[bbquote][bbname] " + name + "[/bbname]" + text + "[/bbquote]";
+    elem.scrollIntoView();
 }

@@ -1,6 +1,7 @@
 <?php
 
 require_once 'config.php';
+require_once 'captcha/captcha_tools.php';
 
 $username = "";
 $password = "";
@@ -14,6 +15,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     // check CAPTCHA
+    if (!isset($_POST["captcha_text"])) {
+        header("Location: index.php");
+        print "Error. Need to input the text in the image.";
+        exit;
+    }
+
+    if ($_POST["captcha_text"] != $_POST["captcha_val"]) {
+        print "Wrong CAPTCHA.";
+        exit;
+    }
 
     // check if username is taken
     $stmt = $conn->prepare("SELECT id FROM users WHERE username = ?");
@@ -130,14 +141,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <input type="hidden" name="MAX_FILE_SIZE" value="200000" />
     <input type="file" name="avatar">
     </div>
-
-    <!-- captcha -->
+    
+    <!--captcha -->
+    <div>
+    <p>Enter the text given.</p>
+    <?php
+    $str = generateString(8); 
+    $nwp_str = str_replace(' ', '', $str); // no whitespace
+    generateCaptchaImage($str, "captcha/captcha.png");
+    ?>
+    <img src="captcha/cap_image.php">
+    <br> 
+    Captcha:<input type="text" name="captcha_text" class="form-field">
+    <input type="hidden" name="captcha_val" value="<?php echo $nwp_str?>">
+    </div>
 
     <div>
     <input type="submit" class="form-button" value="Submit">
     </div>
     <div>
-    <input type="reset" class="form-button" value="Resert">
+    <input type="reset" class="form-button" value="Reset">
     </div>
 
     </form>

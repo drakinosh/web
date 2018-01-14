@@ -23,4 +23,18 @@ function getUserPosts($conn, $uid) {
     return count($rows);
 }
 
+function printStat($level) {
+
+    echo "\n<br>\n";
+
+    if ($level == 'U') {
+        echo "User\n";
+    } else if ($level == 'A') {
+        echo "<font color='gold'>Admin</font>\n";
+    } else if ($level == 'M') {
+        echo "<font color='blue'>Moderator</font>\n";
+    } else if ($level == 'B') {
+        echo "<font color='red'>BANNED</font>\n";
+    }
+}
 ?>

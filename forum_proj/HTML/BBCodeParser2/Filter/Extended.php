@@ -61,7 +61,7 @@ class HTML_BBCodeParser2_Filter_Extended extends HTML_BBCodeParser2_Filter
                                                 'allowed'   => 'all',
                                                 'attributes'=> array('quote' =>'cite=%2$s%1$s%2$s')),
                                 // *big fucking sigh*
-                                'bbquote' => array('htmlopen'  => 'table class="quotable"<tr><td class="qcls"><div>Orig. post: <strong><span',
+                                'bbquote' => array('htmlopen'  => 'table class="quotable"><tr><td class="qcls"><div>Originally Posted by <strong><span',
                                                 'htmlclose' => 'i></td></tr></table',
                                                 'allowed'   => 'all',
                                                 'attributes'=> array()),

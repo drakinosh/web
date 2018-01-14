@@ -89,6 +89,13 @@ echo "<a id='link' href='logout.php'>Logout</a>";
         <h4>Joined:</h4> <?php echo $user_row["joined"]; ?>
         <br>
         <h4>Posts:</h4> <?php echo getUserPosts($conn, $user_row["uid"]); ?>
+        <br>
+        <?php 
+        if ($self == 'F') {
+            echo "\n<a href='send_pm.php?recipient=" . $user_row["username"] 
+                 .  "'><h4>Send Private Message</h4></a>";
+        }
+        ?>
     <?php
     }
 

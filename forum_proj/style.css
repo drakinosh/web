@@ -59,6 +59,7 @@ th {
 
 .tuser {
     width: 15%;
+    background-color: #A19EB9;
 }
 
 .tdetails {
@@ -97,13 +98,22 @@ h1 {
     border-spacing: 0 5px;
 }
 
-.post-date {
+.post-date, .post-num, .post-global-num {
     font-family: courier new;
     font-size: 14px;
 }
 
+.post-num {
+    float: right;
+}
 
-.thead, .edit-data {
+.post-global-num {
+    display: inline;
+    color: #16531F;
+    margin-left: 80px;
+}
+
+.thead, .post-num-data {
     font-weight: normal;
     border: 1px solid #464138;
     background-color: #666A7A;
@@ -114,22 +124,23 @@ h1 {
     border-right: 0;
 }
 
-.edit-data {
+.post-num-data {
     border-left: 0;
 }
 
 /* quotes */
 .quotable {
-    margin-left: 20px;
     border: 0;
     padding: 6;
     border-spacing: 0;
     border-collapse: separate;
+    width: 96%;
 }
 
 .qcls {
     border: 1px inset;
     background: #EDE8E0;
+    width: 100%;
 }
 
 /* for entity table */
@@ -205,6 +216,7 @@ div h4 {
     text-align: center;
     margin: 0 auto;
     border: 1px solid white;
+    width: 80%;
 }
 
 .attach-div {

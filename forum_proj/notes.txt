@@ -69,3 +69,15 @@ Enabled attachments.
 To do next:
     -limit number of characters in username
     -improve style
+
+
+Sun 14 Jan 2018 09:58:05 PM +0545
+Added default avatar
+Added CAPTCHA at registration(it's weak though)
+Added titles
+
+To do:
+    -Different sections for different kinds of threads
+    -page numbers at the bottom, and 20 posts per page per thread
+    -stickying (by mods only)
+    -improve style
