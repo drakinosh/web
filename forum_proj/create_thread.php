@@ -1,7 +1,6 @@
 <?php
 
 require_once 'config.php';
-
 session_start();
 
 // need useraccount to create thread
@@ -9,6 +8,14 @@ if (!isset($_SESSION["username"]) || empty($_SESSION["username"])) {
     print "Insufficient privileges for creating thread.";
     header("location: login.php");
     exit;
+}
+
+// set forum_id(by GET, initially)
+
+$forum_id = 1;
+
+if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["forum_id"])) {
+    $forum_id = $_GET["forum_id"];
 }
 
 // process data
@@ -25,12 +32,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $body = trim($_POST["thread_body"]);
     $pub_date = date("Y-m-d H:i:s");
     $uid = $_SESSION["uid"]; // uid of current user
+    $forum_id = $_POST["forum_id"];
 
-    $stmt = $conn->prepare("INSERT INTO threads (t_uid, title, details, pub_date) VALUES (?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO threads (t_uid, title, details, pub_date, forum_id) "
+                          ." VALUES (?, ?, ?, ?, ?)");
     $stmt->bindParam(1, $uid);
     $stmt->bindParam(2, $title);
     $stmt->bindParam(3, $body);
     $stmt->bindParam(4, $pub_date);
+    $stmt->bindParam(5, $forum_id);
 
     if (!$stmt->execute()) {
         print "Something is wrong.";
@@ -74,6 +84,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div>
     <input type="reset" class="form-button" value="Reset">
     </div>
+
+    <input type="hidden" name="forum_id" value="<?php echo $forum_id; ?>">
 </form>
 
 

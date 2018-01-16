@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $file_name_dbase = "NIL";
     if (move_uploaded_file($_FILES["attach_file"]["tmp_name"], $upload_file)) {
-        if ($_FILES["attach_file"]["size"] <= 10485760) { // less than 10 MiB
+        if ($_FILES["attach_file"]["size"] <= 15728640) { // less than 15 MiB
             $file_name_dbase = $fname; // ready for dbase if all goes well
         }
     }

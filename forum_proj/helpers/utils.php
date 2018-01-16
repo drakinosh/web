@@ -37,4 +37,14 @@ function printStat($level) {
         echo "<font color='red'>BANNED</font>\n";
     }
 }
+
+function getForumName($conn, $id)
+{
+    $stmt = $conn->prepare("SELECT forum_name FROM forums WHERE id=?");
+    $stmt->bindParam(1, $id);
+    $stmt->execute();
+    $row = $stmt->fetch();
+
+    return $row["forum_name"];
+}
 ?>

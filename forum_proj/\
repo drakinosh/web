@@ -18,7 +18,7 @@ if (!isset($_SESSION["username"]) || empty($_SESSION["username"])) {
 
 $id = $_GET["id"];
 // page num
-$page = $_GET["page"];
+$page = $_GET["page"] || 1; // default page 1
 
 if (empty($id) || !isset($id)) {
     header("location: index.php");
@@ -67,8 +67,7 @@ if (PARSE_BBCODE == 'TRUE') {
     <h1>Kathmandu University Forums</h1>
 </div>
 
-<?php
-if  ($page == 1) {?>
+
 <table border=1 id="first-post" class="post-table" cellspacing="0">
 <tr>
     <td class="thead">
@@ -98,9 +97,6 @@ if  ($page == 1) {?>
     </div>
 </tr>
 </table>
-<?php
-}
-?>
 <!-- Add replies here -->
 
 <?php
@@ -108,29 +104,12 @@ unset($stmt);
 unset($stmt2);
 unset($user_row);
 
-$pid = $id;
-if ($page == 1) {
-    $low_l = 0; 
-    $post_num=19; 
-} else  {
-    $low_l = ($page-1)*19;
-    $post_num = 20;
-}
-
-$stmt = $conn->prepare("SELECT * FROM posts WHERE p_tid = :pid LIMIT :low_l, :post_num");
-$stmt->bindParam(':pid', $param_p_tid, PDO::PARAM_INT);
-$stmt->bindParam(':low_l', $low_l, PDO::PARAM_INT);
-$stmt->bindParam(':post_num', $post_num, PDO::PARAM_INT);
-
+$stmt = $conn->prepare("SELECT * FROM posts WHERE p_tid = ?");
+$stmt->bindParam(1, $param_p_tid);
 $param_p_tid = $id; # id of current thread;
 $stmt->execute();
 
-if ($page == 1) {
-    $i = 1;
-} else {
-    $i = ($page-1)*20;
-}
-
+$i = 1;
 while ($row=$stmt->fetch()) {
     
     $i += 1;    // for local post numbers
@@ -221,9 +200,9 @@ while ($row=$stmt->fetch()) {
 
 <table id="navi-table">
     <tr>
-    <td class="navi-but"><a href="view_thread.php?id=<?php echo $id;?>&page=<?php echo $page-1; ?>">Prev</a></td>
-    <td class="navi-but"><a href="view_thread.php?id=<?php echo $id;?>&page=<?php echo $page+1; ?>">Next</a></td>
-    </tr>
+    <td class="navi-but"><a href="view_thread.php?id=<?php echo $id;?>&page=<?php echo $page+1; ?>"></td>
+    <td class="navi-but"><a href="view_thread.php?id=<?php echo $id;?>&page=<?php echo $page-1; ?>"</td>
+　o 
 </table>
 
 <!-- Allow users to reply -->
@@ -257,5 +236,6 @@ if ($logged_in == 'T') {
     echo "</div>";
 }
 ?>
+
 </body>
 </html>

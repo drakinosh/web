@@ -227,3 +227,33 @@ div h4 {
 .reported {
     background-color: red;
 }
+
+
+/* forum styles */
+#forums-table {
+    table-layout: auto;
+    width: 90%;
+}
+.for-id {
+    width: 10%;
+}
+
+.for-name {
+    width: 90%;
+}
+
+.for-row {
+    padding-bottom: 100px;
+}
+
+#forum-title {
+    text-align: center;
+}
+
+#navi-table {
+    margin: 0 auto;
+}
+.navi-but {
+    background-color: white;
+    text-decoration: none;
+}

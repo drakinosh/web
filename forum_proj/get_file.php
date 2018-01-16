@@ -15,6 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
     header('Content-Type: ' . mime_content_type($full_path));
     header('Content-Length: ' . filesize($full_path));
+    header('Content-Disposition: attachment; filename="' . $fname . '"');
     flush();
     readfile($full_path);
 
