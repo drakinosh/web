@@ -35,7 +35,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Database error";
     }
 
-    header("location: view_thread.php?id=".$tid);
+    header("location: view_thread.php?id=".$tid."&page=1");
+
     exit;
 
 }

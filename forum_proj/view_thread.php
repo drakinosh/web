@@ -68,6 +68,7 @@ if (PARSE_BBCODE == 'TRUE') {
 </div>
 
 <?php
+
 if  ($page == 1) {?>
 <table border=1 id="first-post" class="post-table" cellspacing="0">
 <tr>

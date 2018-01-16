@@ -257,3 +257,7 @@ div h4 {
     background-color: white;
     text-decoration: none;
 }
+
+.for-id, .for-name {
+    padding-bottom: 40px;
+}
