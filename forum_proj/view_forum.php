@@ -9,7 +9,7 @@ require_once 'helpers/utils.php';
 <head>
     <title>KU Forums</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="styles/<?php echo getSheet(); ?>" id="main-style">
 </head>
 <body>
 
@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["id"])) {
 
     echo "<h3 id='forum-title'>" . getForumName($conn, $_GET["id"]) . "</h3>\n";
 
-    $stmt = $conn->prepare("SELECT tid, title FROM threads WHERE forum_id=?");
+    $stmt = $conn->prepare("SELECT * FROM threads WHERE forum_id=? ORDER BY isSticky='N'");
     $stmt->bindParam(1, $for_id);
     
     $for_id = $_GET["id"];
@@ -53,9 +53,9 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["id"])) {
 
     ?>
     
-    <a href="create_thread.php?forum_id=<?php echo $_GET["id"]; ?>">Create Thread</a>
+    <a class="forum-link" href="create_thread.php?forum_id=<?php echo $_GET["id"]; ?>">Create Thread</a>
 
-    <table>
+    <table class="thread-table" border="1">
         <tr>
         <th class="tid">Id</th>
         <th class="ttitle">Title</th>
@@ -64,10 +64,19 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["id"])) {
 
     <?php
     while ($row = $stmt->fetch()) {
+        if ($row["isSticky"] == "Y") {
+            echo "<tr class='thread-sticky'>\n";
+        } else {
+            echo "<tr>\n";
+        }
     ?>
-        <tr>
         <td><?php echo $row["tid"]; ?></td>
-        <td><a href="view_thread.php?id=<?php echo $row["tid"]; ?>&page=1"><?php echo $row["title"]; ?></a>
+        <td>
+            <a href="view_thread.php?id=<?php echo $row["tid"]; ?>&page=1"><?php echo $row["title"]; ?></a>
+        <?php if ($row["isSticky"] == "Y") { ?>
+            <p style="display: inline;">[Sticky]</p>
+        <?php } ?> 
+        </td>
         <td><?php echo getReplyCount($conn, $row["tid"]); ?></td>
         </tr>
     <?php

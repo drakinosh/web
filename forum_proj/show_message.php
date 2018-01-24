@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 <head>
     <title>Private Message</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="styles/<?php echo getSheet(); ?>" id="main-style">
 </head>
 <body>
 

@@ -280,3 +280,7 @@ div h4 {
     word-wrap: break-word;
     width: 80%;
 }
+
+.forum-link {
+    margin-left: 10%;
+}

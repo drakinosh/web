@@ -1,6 +1,6 @@
 body {
     /*background-color: #6577C7; */
-    background-color: #D5E4F7;
+    background-color: #E4F7D5; /* RGB->GBR rotated */
 }
 
 form:not(.link-form) {
@@ -60,12 +60,12 @@ th {
 
 .tuser {
     width: 15%;
-    background-color: #A19EB9;
+    background-color: #9EB9A1;
 }
 
 .tdetails {
     width: 85%;
-    background-color:#bbd5e4;
+    background-color: #D5E4BB;
     padding-left: 5px;
 }
 
@@ -117,7 +117,7 @@ h1 {
 .thead, .post-num-data {
     font-weight: normal;
     border: 1px solid #464138;
-    background-color: #666A7A;
+    background-color: #6A7A66;
 }
 
 .thead {
@@ -177,7 +177,7 @@ h1 {
 }
 
 #mail-table tr:hover {
-    background-color: #E9EBF2;
+    background-color: #EBF2E9;
 }
 
 #mail-table th {
@@ -185,7 +185,7 @@ h1 {
 }
 
 .mess-read {
-    background-color: #3E57AB;
+    background-color: #57AB3E;
 }
 
 
@@ -210,7 +210,7 @@ div h4 {
 
 #inbox-table {
     width: 640px;
-    background-color: #9BBBF0;
+    background-color: #BBF09B;
 }
 
 .div-mess {
@@ -279,4 +279,8 @@ div h4 {
 .thread-table {
     word-wrap: break-word;
     width: 80%;
+}
+
+.forum-link {
+    margin-left: 10%;
 }

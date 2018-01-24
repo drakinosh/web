@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 <html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link id="main-style" rel="stylesheet" type="text/css" href="styles/<?php echo getSheet(); ?>">
     <title>User <?php echo $user_uname; ?></title>
 </head>
 <body>
@@ -72,9 +72,15 @@ echo "<a id='link' href='logout.php'>Logout</a>";
         <br>
         <a href="send_pm.php">Send PM</a>
         <br>
-        <?php if (isset($_SESSION["level"]) && $_SESSION["level"] == 'A') {
-                echo "<a href='admin_page.php'>Admin Page</a>";
-              }
+        <?php 
+        if (isset($_SESSION["level"]) && $_SESSION["level"] == 'A') {
+                echo "<a href='admin_page.php'>Admin Page</a>\n";
+        }
+
+        if ($self == 'T') {
+            echo "<br><br>\n";
+            echo "<a href='settings.php?uid=" . $uid . "'>Settings</a>";
+        }
         ?>
         </div>
 
@@ -91,6 +97,12 @@ echo "<a id='link' href='logout.php'>Logout</a>";
         <h4>Posts:</h4> <?php echo getUserPosts($conn, $user_row["uid"]); ?>
         <br>
         <?php 
+        if ($user_row["location"] != "") { ?>
+        <h4>Location:</h4> <?php echo $user_row["location"]; ?>
+        <br>
+        <?php
+        }
+
         if ($self == 'F') {
             echo "\n<a href='send_pm.php?recipient=" . $user_row["username"] 
                  .  "'><h4>Send Private Message</h4></a>";
@@ -104,6 +116,7 @@ echo "<a id='link' href='logout.php'>Logout</a>";
     } else if ($self == 'T' && $opt == '2') {
         include 'read_sent_pm.php';
     }
+
     ?>
     </div>
 

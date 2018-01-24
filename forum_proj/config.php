@@ -15,4 +15,15 @@ try {
     die();
 }
 
+function getSheet() {
+    if (isset($_COOKIE["style_sheet"])) {
+        return $_COOKIE["style_sheet"];
+    }
+    return "style_blue.css";
+}
+
+function dbase_die() {
+    print "Database Error.";
+    exit;
+}
 ?>

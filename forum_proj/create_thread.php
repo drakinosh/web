@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="utf-8">
     <title>Create Thread</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles/<?php echo getSheet();?>" id="main-style">
 </head>
 <body>
 

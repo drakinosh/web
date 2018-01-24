@@ -80,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="utf-8">
     <title>PM</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link id="main-style" rel="stylesheet" type="text/css" href="styles/<?php echo $_COOKIE["style_sheet"]; ?>">
 </head>
 <body>
 

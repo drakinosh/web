@@ -18,7 +18,10 @@ if (!isset($_SESSION["username"]) || empty($_SESSION["username"])) {
 
 $id = $_GET["id"];
 // page num
-$page = $_GET["page"];
+$page = 1;
+if (isset($_GET["page"])) {
+    $page = $_GET["page"];
+}
 
 if (empty($id) || !isset($id)) {
     header("location: index.php");
@@ -35,6 +38,7 @@ $param_tid = $id;
 
 $stmt->execute();
 $row = $stmt->fetch();
+$thread_row = $row;
 
 $stmt2->bindParam(1, $param_uid);
 $param_uid = $row["t_uid"];
@@ -56,7 +60,7 @@ if (PARSE_BBCODE == 'TRUE') {
 <head>
     <title><?php echo htmlspecialchars($row["title"]); ?></title>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="styles/<?php echo getSheet(); ?>" id="main-style">
     <script type="text/javascript" src="quote_script.js"></script>
 </head>
 <body>
@@ -68,6 +72,19 @@ if (PARSE_BBCODE == 'TRUE') {
 </div>
 
 <?php
+
+echo "<h2 class='thread-title-text';'>" . $row["title"]. "</h2>";
+echo "<p class='page-num-text''>Page " . $page . " of " . numPages($conn, $id) . "</p>";
+
+
+// moderator mini-panel
+if ($_SESSION["level"] == "M" || $_SESSION["level"] == "A") { ?>
+    <div class="mod-panel">
+        <a class="mod-but" href="process_mod.php?act=sticky&tid=<?php echo $id;?>">Sticky</a>
+        <a class="mod-but" href="process_mod.php?act=close&tid=<?php echo $id;?>">Close</a>
+    </div>
+<?php
+}
 
 if  ($page == 1) {?>
 <table border=1 id="first-post" class="post-table" cellspacing="0">
@@ -149,7 +166,7 @@ while ($row=$stmt->fetch()) {
     }
 ?>
 
-    <table class="post-table" id="post-<?php echo $row["pid"]; ?>" cellspacing="0" border=1>
+<table class="post-table" id="post-<?php echo $row["pid"]; ?>" cellspacing="0" border=1>
 <div class="thread-reply">
 <tr>
     <td class="thead">
@@ -222,15 +239,27 @@ while ($row=$stmt->fetch()) {
 
 <table id="navi-table">
     <tr>
+    <?php
+    if ($page != 1) { ?>
     <td class="navi-but"><a href="view_thread.php?id=<?php echo $id;?>&page=<?php echo $page-1; ?>">Prev</a></td>
+    <?php
+    }
+    
+    if ($page != numPages($conn, $id)) { ?>
     <td class="navi-but"><a href="view_thread.php?id=<?php echo $id;?>&page=<?php echo $page+1; ?>">Next</a></td>
+    <?php
+    } ?>
     </tr>
 </table>
 
 <!-- Allow users to reply -->
 
+
 <?php
-if ($logged_in == 'T') {
+if ($thread_row["open"] == 'N') {
+    print "<p>Thread closed. Replies have been disabled.</p>";
+    
+} else if ($logged_in == 'T') {
 ?>
 <div class="post-reply-div">
 <p style="text-align: center;">NOTE: BBCode is usable</p>
@@ -257,6 +286,8 @@ if ($logged_in == 'T') {
     echo "Only members can reply.";
     echo "</div>";
 }
+
+unset($row);
 ?>
 </body>
 </html>

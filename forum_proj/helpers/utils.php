@@ -47,4 +47,18 @@ function getForumName($conn, $id)
 
     return $row["forum_name"];
 }
+
+function numPages($conn, $thread_id)
+{
+    $stmt = $conn->prepare("SELECT * FROM posts WHERE p_tid=?");
+    $stmt->bindParam(1, $thread_id);
+    $stmt->execute();
+
+    $rows = $stmt->fetchAll();
+
+    if (count($rows) <= 19) {
+        return 1;
+    }
+    return ceil(count($rows)/20);
+}
 ?>

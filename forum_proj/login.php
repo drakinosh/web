@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <title>Login</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="stylesheet" href="styles/<?php echo getSheet(); ?>" type="text/css" id="main-style">
 </head>
 
 <body>

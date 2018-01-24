@@ -1,12 +1,13 @@
 <?php
 require_once 'config.php';
+
 ?>
 
 <html>
 <head>
     <title>KU Forums</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="styles/<?php echo getSheet(); ?>" id="main-style">
 </head>
 <body>
 
@@ -34,6 +35,7 @@ echo "<br>";
 
 
 <p>
+<h2 style="text-align: center;">Available Forums</h2>
 <div id="forums">
 
 <?php

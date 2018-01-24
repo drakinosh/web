@@ -81,3 +81,16 @@ To do:
     -page numbers at the bottom, and 20 posts per page per thread
     -stickying (by mods only)
     -improve style
+
+
+Wed 24 Jan 2018 11:15:57 AM +0545
+Added different forums
+Added Page numbers at top, and next and prev buttons
+Added Stickying
+Added Red, Green alternative themes(obtained by rotating colors, setting cookies)
+Added location, change pass to user settings
+
+To do:
+    -Limit number of characters in input
+    -Add Signature
+    -Improve style

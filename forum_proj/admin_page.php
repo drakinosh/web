@@ -14,7 +14,7 @@ if ($_SESSION["level"] != 'A') { // not admin
 <html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="styles/<?php echo getSheet(); ?>">
     <title>Admin Page</title>
 </head>
 <body>
