@@ -17,7 +17,7 @@ $message = "";
 $subject = "";
 
 # for replying - fill the fields
-if ($_SERVER["REQUEST_METHOD"] == "GET") {
+if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["recipient"])) {
 
     $recipient = trim($_GET["recipient"]);
     $subject = trim($_GET["subject"]);
@@ -80,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="utf-8">
     <title>PM</title>
-    <link id="main-style" rel="stylesheet" type="text/css" href="styles/<?php echo $_COOKIE["style_sheet"]; ?>">
+    <link id="main-style" rel="stylesheet" type="text/css" href="styles/<?php echo getSheet(); ?>">
 </head>
 <body>
 

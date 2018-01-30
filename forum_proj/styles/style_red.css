@@ -178,7 +178,7 @@ h1 {
 }
 
 #mail-table tr:hover {
-    background-color: #E9EBF2;
+    background-color: #F2E9EB;
 }
 
 #mail-table th {
@@ -207,6 +207,11 @@ div h4 {
     float: left;
     position: absolute;
     left: 16px;
+    border: 1px solid #5A5A5A;
+}
+
+.mem-div a {
+    text-decoration: none;
 }
 
 #inbox-table {

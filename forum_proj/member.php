@@ -56,7 +56,7 @@ echo "<a id='link' href='logout.php'>Logout</a>";
     <h1>Kathmandu University Forums</h1>
 </div>
 
-<h3> Stats for <?php echo $user_uname; ?> </h3>
+<h3 style="text-align:center;"> Stats for <?php echo $user_uname; ?> </h3>
 
 <div class="user-data">
     <?php

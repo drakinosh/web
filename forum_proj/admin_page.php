@@ -20,7 +20,10 @@ if ($_SESSION["level"] != 'A') { // not admin
 <body>
 
 <?php
-echo "<strong id='username'>".$_SESSION["username"]."</strong>\n";
+echo "<a id='username' href='member.php?uid=" . $_SESSION["uid"] . "'><strong>".$_SESSION["username"]."</strong></a>\n";
+echo "&nbsp;&nbsp;";
+echo "<a id='link' href='logout.php'>Logout</a>";
+echo "<br>";
 ?>
 
 <div class="page-head">

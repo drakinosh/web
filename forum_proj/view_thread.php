@@ -65,6 +65,17 @@ if (PARSE_BBCODE == 'TRUE') {
 </head>
 <body>
 
+<?php
+if (!empty($_SESSION["username"])) {
+    echo "<a id='username' href='member.php?uid=" . $_SESSION["uid"] . "'><strong>".$_SESSION["username"]."</strong></a>\n";
+    echo "&nbsp;&nbsp;";
+    echo "<a id='link' href='logout.php'>Logout</a>";
+} else {
+    echo "<a id='link' href='login.php'>Login</a>";
+}
+echo "<br>";
+?>
+
 <!-- KU header -->
 <div class="page-head">
     <a href="index.php"><img src="ku_logo.png"></a>
@@ -161,7 +172,7 @@ while ($row=$stmt->fetch()) {
     $user_row = $stmt2->fetch();
     # only admins and mods can see this. 
     # for convenience, not security
-    if (isset($_SESSION["uid"]) && $_SESSION["level"] == "A" || $_SESSION["level"] == "M") {
+    if (isset($_SESSION["level"]) && ($_SESSION["level"] == "A" || $_SESSION["level"] == "M")) {
         echo "<p class='post-global-num'>" . $row["pid"] . "</p>";
     }
 ?>
