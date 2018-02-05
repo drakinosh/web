@@ -31,11 +31,6 @@ form:not(.link-form) {
     margin-left: 200px;
 }
 
-#username {
-    float: right;
-}
-
-
 table{
     table-layout: fixed;
     /* border: 1px solid black; */
@@ -200,6 +195,9 @@ div h4 {
 
 .mem-div {
     display: inline-block;
+    background-color: white;
+    border-radius: 5px;
+
 }
 
 #mem-pane {
@@ -288,4 +286,21 @@ div h4 {
 
 .forum-link {
     margin-left: 10%;
+}
+
+.user-toparea {
+    float: right;
+    background-color: #8E8E8E;
+}
+
+#case-pane {
+    float: right;
+    position: absolute;
+    right: 8px;
+}
+
+#case-table {
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
 }

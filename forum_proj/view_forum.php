@@ -13,30 +13,9 @@ require_once 'helpers/utils.php';
 </head>
 <body>
 
-<div>
 <?php
-session_start();
-if (!empty($_SESSION["username"])) {
-    echo "<a id='username' href='member.php?uid=" . $_SESSION["uid"] . "'><strong>".$_SESSION["username"]."</strong></a>\n";
-    echo "&nbsp;&nbsp;";
-    echo "<a id='link' href='logout.php'>Logout</a>";
-} else {
-    echo "<a id='link' href='login.php'>Login</a>";
-}
-echo "<br>";
+include 'head.php';
 ?>
-</div>
-
-<div class="page-head">
-    <a href="index.php"><img src="ku_logo.png"></a>
-    <h1>Kathmandu University Forums</h1>
-</div>
-
-<div>
-
-
-
-<p>
 <div id="threads">
 <!-- Show the threads -->
 <?php

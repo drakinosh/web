@@ -66,27 +66,9 @@ if (PARSE_BBCODE == 'TRUE') {
 <body>
 
 <?php
-if (!empty($_SESSION["username"])) {
-    echo "<a id='username' href='member.php?uid=" . $_SESSION["uid"] . "'><strong>".$_SESSION["username"]."</strong></a>\n";
-    echo "&nbsp;&nbsp;";
-    echo "<a id='link' href='logout.php'>Logout</a>";
-} else {
-    echo "<a id='link' href='login.php'>Login</a>";
-}
-echo "<br>";
-?>
-
-<!-- KU header -->
-<div class="page-head">
-    <a href="index.php"><img src="ku_logo.png"></a>
-    <h1>Kathmandu University Forums</h1>
-</div>
-
-<?php
-
+include 'head.php';
 echo "<h2 class='thread-title-text';'>" . $row["title"]. "</h2>";
 echo "<p class='page-num-text''>Page " . $page . " of " . numPages($conn, $id) . "</p>";
-
 
 // moderator mini-panel
 if ($_SESSION["level"] == "M" || $_SESSION["level"] == "A") { ?>

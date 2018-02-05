@@ -3,6 +3,12 @@ body {
     background-color: #D5E4F7;
 }
 
+/* CSS Reset, make sure that page-head stays at top */
+html, body {
+    padding: 0;
+    margin: 0;
+}
+
 form:not(.link-form) {
     margin: 0 auto;
     width: 640px;
@@ -30,11 +36,6 @@ form:not(.link-form) {
 .form-button {
     margin-left: 200px;
 }
-
-#username {
-    float: right;
-}
-
 
 table{
     table-layout: fixed;
@@ -70,9 +71,7 @@ th {
 }
 
 .post-table {
-    width: 1200px;
-    margin-left: 80px;
-    margin-right: 80px;
+    width: 100%;
     margin-bottom: 8px;
     position: relative; /* to put quote but at bottom right *//
 }
@@ -146,7 +145,7 @@ h1 {
 
 /* for entity table */
 .entity-table {
-    width: 800px;
+    width: 100%;
     background: #FFFFFF;
 }
 
@@ -195,17 +194,19 @@ div h4 {
 
 .user-data {
     margin: 0 auto;
-    width: 640px;
+    width: 100%;
 }
 
 .mem-div {
     display: inline-block;
+    background-color: white;
+    border-radius: 5px;
 }
 
 #mem-pane {
     float: left;
-    position: absolute;
-    left: 16px;
+    position: relative;
+    left: 0px;
     border: 1px solid #5A5A5A;
 }
 
@@ -223,6 +224,8 @@ div h4 {
     margin: 0 auto;
     border: 1px solid white;
     width: 80%;
+    border-radius: 5px;
+    background-color: white;
 }
 
 .attach-div {
@@ -240,12 +243,13 @@ div h4 {
     table-layout: auto;
     width: 90%;
 }
-.for-id {
-    width: 10%;
-}
 
 .for-name {
-    width: 90%;
+    width: 80%;
+}
+
+.for-threads {
+    width: 10%;
 }
 
 .for-row {
@@ -264,7 +268,7 @@ div h4 {
     text-decoration: none;
 }
 
-.for-id, .for-name {
+.for-threads, .for-name {
     padding-bottom: 64px;
     background-color: white;
 }
@@ -288,4 +292,41 @@ div h4 {
 
 .forum-link {
     margin-left: 10%;
+}
+
+.logo-top {
+    background: url(../site_images/kuf_banner.jpg) no-repeat top center;
+    height: 90px;
+    margin: 0 auto;
+    display: block;
+}
+
+.page-head {
+    background: transparent url(../site_images/bg.png) repeat-x;
+    height: 90px;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+}
+.user-toparea { 
+    float: right;
+    background-color: #8E8E8E;
+    border-radius: 1px;
+}
+
+#case-pane {
+    float: right;
+    position: relative;
+    right: 0px;
+}
+
+#case-table {
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
+}
+
+#data-pane, .mail-form{
+    margin-left: 25%;
+    position: relative;
 }

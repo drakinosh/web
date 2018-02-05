@@ -1,6 +1,6 @@
 <?php
 require_once 'config.php';
-
+require_once 'helpers/utils.php';
 ?>
 
 <html>
@@ -11,29 +11,10 @@ require_once 'config.php';
 </head>
 <body>
 
-<div>
+
 <?php
-session_start();
-if (!empty($_SESSION["username"])) {
-    echo "<a id='username' href='member.php?uid=" . $_SESSION["uid"] . "'><strong>".$_SESSION["username"]."</strong></a>\n";
-    echo "&nbsp;&nbsp;";
-    echo "<a id='link' href='logout.php'>Logout</a>";
-} else {
-    echo "<a id='link' href='login.php'>Login</a>";
-}
-echo "<br>";
+include 'head.php';
 ?>
-</div>
-
-<div class="page-head">
-    <a href="index.php"><img src="ku_logo.png"></a>
-    <h1>Kathmandu University Forums</h1>
-</div>
-
-<div>
-
-
-
 <p>
 <h2 style="text-align: center;">Available Forums</h2>
 <div id="forums">
@@ -46,16 +27,16 @@ $stmt->execute();
 
 <table id="forums-table">
     <tr>
-    <th class="fid">Id</th>
     <th class="ftitle">Name</th>
+    <th class="fthreads">Threads</th>
     </tr>
 
 <?php
 while ($row = $stmt->fetch()) {
 ?>
     <tr class="for-row">
-    <td class="for-id"><?php echo $row["id"]; ?></td>
     <td class="for-name"><a href="view_forum.php?id=<?php echo $row["id"]; ?>"><?php echo $row["forum_name"]; ?></a>
+    <td class="for-threads"><?php echo getForumThreads($conn, $row["id"]); ?></td>
     </tr>
 <?php
 }

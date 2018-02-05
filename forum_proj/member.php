@@ -46,23 +46,16 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 <body>
 
 <?php 
-echo "<a id='username' href='member.php?uid=" . $_SESSION["uid"] . "'><strong>".$_SESSION["username"]."</strong></a>";
-echo "&nbsp;&nbsp;";
-echo "<a id='link' href='logout.php'>Logout</a>";
+include 'head.php';
 ?>
 
-<div class="page-head">
-    <a href="index.php"><img src="ku_logo.png"></a>
-    <h1>Kathmandu University Forums</h1>
-</div>
-
-<h3 style="text-align:center;"> Stats for <?php echo $user_uname; ?> </h3>
+<h3 style="text-align:center; text-decoration:underline;"> Stats for <?php echo $user_uname; ?> </h3>
 
 <div class="user-data">
     <?php
     if ($self == 'T') {
     ?>
-        <div class="mem-div" id="mem-pane">
+    <div class="mem-div" id="mem-pane">
         <a href="member.php?uid=<?php echo $uid; ?>">Profile</a>
         <br>
         <!--<a href="read_pm.php">Inbox</a> -->
@@ -79,18 +72,20 @@ echo "<a id='link' href='logout.php'>Logout</a>";
 
         if ($self == 'T') {
             echo "<br><br>\n";
-            echo "<a href='settings.php?uid=" . $uid . "'>Settings</a>";
+            echo "<a href='settings.php?uid=" . $uid . "'>Settings</a>\n";
         }
         ?>
-        </div>
+    </div>
 
     <?php
     }
     ?>
-        <div class="mem-div" id="data-pane">
+    <!-- <div class="mem-div" id="data-pane"> -->
     <?php
     if ($self == 'F' || !isset($opt)) {
-    ?>
+        $show_trophies = 'yes';
+?>
+        <div class="mem-div" id="data-pane">
         <img src="getimage.php?uid=<?php echo $uid; ?>" class="avatar-img">
         <h4>Joined:</h4> <?php echo $user_row["joined"]; ?>
         <br>
@@ -108,6 +103,7 @@ echo "<a id='link' href='logout.php'>Logout</a>";
                  .  "'><h4>Send Private Message</h4></a>";
         }
         ?>
+        </div>
     <?php
     }
 
@@ -118,7 +114,18 @@ echo "<a id='link' href='logout.php'>Logout</a>";
     }
 
     ?>
-    </div>
+    <?php
+    if(isset($show_trophies) && $show_trophies == 'yes') { ?>
+        <div class="mem-div" id="case-pane">
+            <p>Trophy Case</p>
+            <table id="case-table">
+                    <tr>
+                    </tr>
+            </table>
+        </div>
+    <?php
+    }
+    ?>
 
 </div>
 

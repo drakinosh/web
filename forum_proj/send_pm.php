@@ -85,18 +85,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 
 <?php
-echo "<a id='username' href='member.php?uid=" . $_SESSION["uid"] . "'><strong>".$_SESSION["username"]."</strong></a>\n";
-echo "&nbsp;&nbsp;";
-echo "<a id='link' href='logout.php'>Logout</a>";
+include 'head.php';
 ?>
-
-
-<!-- KU header -->
-<div class="page-head">
-    <a href="index.php"><img src="ku_logo.png"></a>
-    <h1>Kathmandu University Forums</h1>
-</div>
-
 <form method="post" action=<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?> id="pm-form">
     <div>
     <label class="form-label">Recipient:</label>

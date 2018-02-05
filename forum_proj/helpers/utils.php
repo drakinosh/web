@@ -23,6 +23,16 @@ function getUserPosts($conn, $uid) {
     return count($rows);
 }
 
+function getForumThreads($conn, $forid) {
+    $stmt = $conn->prepare("SELECT tid FROM threads WHERE forum_id=?");
+    $stmt->bindParam(1, $forid);
+    $stmt->execute();
+    $rows = $stmt->fetchAll();
+
+    unset($stmt);
+    return count($rows);
+}
+
 function printStat($level) {
 
     echo "\n<br>\n";
