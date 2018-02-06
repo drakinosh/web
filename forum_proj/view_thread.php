@@ -67,7 +67,9 @@ if (PARSE_BBCODE == 'TRUE') {
 
 <?php
 include 'head.php';
-echo "<h2 class='thread-title-text';'>" . $row["title"]. "</h2>";
+
+echo "<div class='root-cont'>\n";
+echo "<h2 class='thread-title-text top-title';'>" . $row["title"]. "</h2>";
 echo "<p class='page-num-text''>Page " . $page . " of " . numPages($conn, $id) . "</p>";
 
 // moderator mini-panel
@@ -282,5 +284,6 @@ if ($thread_row["open"] == 'N') {
 
 unset($row);
 ?>
+</div>
 </body>
 </html>

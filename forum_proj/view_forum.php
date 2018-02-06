@@ -16,13 +16,14 @@ require_once 'helpers/utils.php';
 <?php
 include 'head.php';
 ?>
+<div class="root-cont">
 <div id="threads">
 <!-- Show the threads -->
 <?php
 
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["id"])) {
 
-    echo "<h3 id='forum-title'>" . getForumName($conn, $_GET["id"]) . "</h3>\n";
+    echo "<h2 class='top-title' id='forum-title'>" . getForumName($conn, $_GET["id"]) . "</h2>\n";
 
     $stmt = $conn->prepare("SELECT * FROM threads WHERE forum_id=? ORDER BY isSticky='N'");
     $stmt->bindParam(1, $for_id);
@@ -65,7 +66,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["id"])) {
 
     ?>
     </table>
-
+    </div>
+</div>
     </body>
     </html>
 <?php

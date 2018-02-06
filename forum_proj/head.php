@@ -1,7 +1,6 @@
 <div class="page-head">
     <a href="index.php" class="logo-top"></a>
 </div>
-
 <?php
 session_start();
 if (!empty($_SESSION["username"])) {
@@ -18,5 +17,4 @@ if (!empty($_SESSION["username"])) {
     echo "<input type='button' onclick='location.href=\"login.php\";' value='Login'>\n";
     echo "</div>\n";
 }
-echo "<br>";
 ?>

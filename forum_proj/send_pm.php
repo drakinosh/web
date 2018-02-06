@@ -87,6 +87,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php
 include 'head.php';
 ?>
+
+<div class="root-cont">
 <form method="post" action=<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?> id="pm-form">
     <div>
     <label class="form-label">Recipient:</label>
@@ -107,6 +109,6 @@ include 'head.php';
     <input type="submit" class="form=button" value="Send">
     </div>
 </form>
-
+</div>
 </body>
 </html> 

@@ -49,30 +49,29 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 include 'head.php';
 ?>
 
-<h3 style="text-align:center; text-decoration:underline;"> Stats for <?php echo $user_uname; ?> </h3>
-
+<!-- <h3 style="text-align:center; text-decoration:underline;"> Stats for <?php echo $user_uname; ?> </h3> -->
 <div class="user-data">
     <?php
     if ($self == 'T') {
     ?>
-    <div class="mem-div" id="mem-pane">
-        <a href="member.php?uid=<?php echo $uid; ?>">Profile</a>
+    <div class="mem-div pane-section" id="mem-pane">
+        <a class="mem-link" href="member.php?uid=<?php echo $uid; ?>">Profile</a>
         <br>
         <!--<a href="read_pm.php">Inbox</a> -->
-        <a href="member.php?opt=1&uid=<?php echo $uid; ?>">Inbox</a>
+        <a class="mem-link" href="member.php?opt=1&uid=<?php echo $uid; ?>">Inbox</a>
         <br>
-        <a href="member.php?opt=2&uid=<?php echo $uid;  ?>">Outbox</a>
+        <a class="mem-link" href="member.php?opt=2&uid=<?php echo $uid;  ?>">Outbox</a>
         <br>
-        <a href="send_pm.php">Send PM</a>
+        <a class="mem-link" href="send_pm.php">Send PM</a>
         <br>
         <?php 
         if (isset($_SESSION["level"]) && $_SESSION["level"] == 'A') {
-                echo "<a href='admin_page.php'>Admin Page</a>\n";
+                echo "<a class='mem-link' href='admin_page.php'>Admin Page</a>\n";
         }
 
         if ($self == 'T') {
             echo "<br><br>\n";
-            echo "<a href='settings.php?uid=" . $uid . "'>Settings</a>\n";
+            echo "<a class='mem-link' href='settings.php?uid=" . $uid . "'>Settings</a>\n";
         }
         ?>
     </div>
@@ -85,18 +84,29 @@ include 'head.php';
     if ($self == 'F' || !isset($opt)) {
         $show_trophies = 'yes';
 ?>
-        <div class="mem-div" id="data-pane">
-        <img src="getimage.php?uid=<?php echo $uid; ?>" class="avatar-img">
-        <h4>Joined:</h4> <?php echo $user_row["joined"]; ?>
-        <br>
-        <h4>Posts:</h4> <?php echo getUserPosts($conn, $user_row["uid"]); ?>
-        <br>
+        <div class="mem-div" id="image-pane">
+            <div class="mem-image">
+                <img src="getimage.php?uid=<?php echo $uid; ?>" class="avatar-img">
+            </div>
+        </div>
+
+        <div class="mem-div" id="stat-pane">
+            <div class="mem-stats">
+                <h4><u><?php echo $user_row["username"]; ?></u></h4>
+                <br>
+                <h4>Joined:</h4> <?php echo $user_row["joined"]; ?>
+                <br>
+                <h4>Posts:</h4> <?php echo getUserPosts($conn, $user_row["uid"]); ?>
+                <br>
         <?php 
         if ($user_row["location"] != "") { ?>
         <h4>Location:</h4> <?php echo $user_row["location"]; ?>
         <br>
         <?php
         }
+        ?>
+        </div>
+        <?php
 
         if ($self == 'F') {
             echo "\n<a href='send_pm.php?recipient=" . $user_row["username"] 
@@ -114,9 +124,10 @@ include 'head.php';
     }
 
     ?>
+
     <?php
     if(isset($show_trophies) && $show_trophies == 'yes') { ?>
-        <div class="mem-div" id="case-pane">
+        <div class="mem-div pane-section" id="case-pane">
             <p>Trophy Case</p>
             <table id="case-table">
                     <tr>

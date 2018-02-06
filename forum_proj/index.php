@@ -10,13 +10,12 @@ require_once 'helpers/utils.php';
     <link rel="stylesheet" type="text/css" href="styles/<?php echo getSheet(); ?>" id="main-style">
 </head>
 <body>
-
-
 <?php
 include 'head.php';
 ?>
-<p>
-<h2 style="text-align: center;">Available Forums</h2>
+
+<div class="root-cont">
+<h2 class="top-title">Available Forums</h2>
 <div id="forums">
 
 <?php
@@ -46,5 +45,7 @@ unset($stmt);
 
 ?>
 </table>
+
+</div>
 </body>
 </html>

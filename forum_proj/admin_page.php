@@ -23,9 +23,10 @@ if ($_SESSION["level"] != 'A') { // not admin
 include 'head.php';
 ?>
 
-<h2 style="text-align: center;">Admin Operations Panel</h2>
-
 <!-- Allow admin to ban users and delete posts directly -->
+
+<div class="root-cont">
+<h2 class="top-title">Admin Operations Panel</h2>
 
 <form id="admin_form_1" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 <select id="a_list_1" name="a_entity">
@@ -138,5 +139,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 </div>
 
+</div>
 </body>
 </html>

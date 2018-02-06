@@ -9,6 +9,10 @@ html, body {
     margin: 0;
 }
 
+html, body {
+    height: 100%;
+}
+
 form:not(.link-form) {
     margin: 0 auto;
     width: 640px;
@@ -194,20 +198,21 @@ div h4 {
 
 .user-data {
     margin: 0 auto;
-    width: 100%;
+    width: 95%;
+    height: 100%;
+    background-color: white;
 }
 
 .mem-div {
     display: inline-block;
-    background-color: white;
-    border-radius: 5px;
+
 }
 
 #mem-pane {
     float: left;
     position: relative;
-    left: 0px;
-    border: 1px solid #5A5A5A;
+    height: 100%;
+    border-right: 1px solid black;
 }
 
 .mem-div a {
@@ -309,15 +314,18 @@ div h4 {
     top: 0px;
 }
 .user-toparea { 
-    float: right;
+    right: 0;
+    position: absolute;
+    top: 41px;
     background-color: #8E8E8E;
     border-radius: 1px;
 }
-
 #case-pane {
     float: right;
     position: relative;
-    right: 0px;
+    right: 0;
+    border-left: 1px solid black;
+    height: 100%;
 }
 
 #case-table {
@@ -326,7 +334,41 @@ div h4 {
     border: 1px solid black;
 }
 
-#data-pane, .mail-form{
-    margin-left: 25%;
+#image-pane, .mail-form{
     position: relative;
+}
+
+
+.mem-link {
+    line-height: 26pt;
+}
+
+#stat-pane{
+    top: 0;
+    margin-left: 10%;
+}
+
+#image-pane {
+    margin-left: 15%;
+}
+
+.mem-div-border {
+    border-right: 1px solid black;
+}
+
+
+.pane-section {
+    background-color: #C8C8C8;
+}
+
+.root-cont {
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    height: 100%;
+    background-color: white;
+}
+
+.top-title {
+    margin-top: 0;
+    text-align: center;
 }
