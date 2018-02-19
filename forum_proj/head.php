@@ -2,7 +2,6 @@
     <a href="index.php" class="logo-top"></a>
 </div>
 <?php
-session_start();
 if (!empty($_SESSION["username"])) {
     echo "<div class='user-toparea'>\n";
     echo "<a id='username' href='member.php?uid=" . $_SESSION["uid"] . "'><strong>".$_SESSION["username"]."</strong></a>\n";

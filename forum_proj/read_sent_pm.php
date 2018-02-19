@@ -29,7 +29,7 @@ $stmt->execute();
     <br>
 
     <table border="1" id="mail-table">
-        <th>Sendee</th>
+        <th>Recipient</th>
         <th>Subject</th>
         <th>Sent</th>
         <th></th>
@@ -40,7 +40,7 @@ $stmt->execute();
         <tr class='mess-read'>
         <td class="t-pm-sendee">
             <a style="text=decoration:none;" href="member.php?uid=<?php echo $row["uid_2"]; ?>">
-            <?php echo getUname($conn, $row["uid_1"]); ?>
+            <?php echo getUname($conn, $row["uid_2"]); ?>
             </a>
         </td>
         <td class="t-pm-subject">

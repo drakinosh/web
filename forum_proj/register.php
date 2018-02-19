@@ -109,12 +109,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-    <!-- KU Header -->
-    <div class="page-head">
-        <a href="index.php"><img src="ku_logo.png"></a>
-        <h1>Kathmandu University Forums</h1>
-    </div>
-
+<?php
+include 'head.php';
+?>
 
     <form enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
     <h2>Register</h2>

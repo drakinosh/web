@@ -7,6 +7,9 @@ define ('DBASE', 'proj_db');
 
 define ('PARSE_BBCODE', 'TRUE');
 
+const FLAG_STUDENT = 0b00000001; // 1
+const FLAG_MAINTAINER = 0b00000010; // 2
+
 try {
     $conn = new PDO('mysql:host=' . SERVER . ';dbname=' . DBASE,
                     USER, PASS);

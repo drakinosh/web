@@ -1,6 +1,8 @@
 <?php
 require_once 'config.php';
 require_once 'helpers/utils.php';
+
+session_start();
 ?>
 
 <html>
@@ -24,19 +26,28 @@ $stmt->execute();
 
 ?>
 
+<!--
 <table id="forums-table">
     <tr>
     <th class="ftitle">Name</th>
     <th class="fthreads">Threads</th>
     </tr>
 
+-->
 <?php
 while ($row = $stmt->fetch()) {
 ?>
+    <!--
     <tr class="for-row">
     <td class="for-name"><a href="view_forum.php?id=<?php echo $row["id"]; ?>"><?php echo $row["forum_name"]; ?></a>
     <td class="for-threads"><?php echo getForumThreads($conn, $row["id"]); ?></td>
     </tr>
+    !-->
+    <div class="forum-cont">
+        <a class="big-but" href="view_forum.php?id=<?php echo $row["id"]; ?>"><?php echo $row["forum_name"]; ?></a>
+        (<?php echo getForumThreads($conn, $row["id"]);?> threads)
+    </div>
+    <br>
 <?php
 }
 
@@ -44,7 +55,7 @@ while ($row = $stmt->fetch()) {
 unset($stmt);
 
 ?>
-</table>
+<!-- </table> -->
 
 </div>
 </body>

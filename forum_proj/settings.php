@@ -23,6 +23,7 @@ $row=$stmt->fetch();
 unset($stmt);
 
 $loc = $row["location"];
+$sig = $row["signature"];
 
 ?>
 
@@ -36,7 +37,7 @@ $loc = $row["location"];
 <?php
 include 'head.php';
 ?>
-
+<div class="root-cont">
 <form action="process_settings.php" method="post">
 
     <h3 class="setting-head">Style Settings</h3>
@@ -75,9 +76,13 @@ include 'head.php';
     </div>
 
     <h3 class="setting-head">Add Signature</h3>
+    <div>
+    <label class="form-label">Signature:</label>
+    <textarea rows="10" cols="40" class="form-body" name="signature" value="<?php echo $sig; ?>"></textarea>
+    </div>
 
     <input type="hidden" name="uid" value="<?php echo $_SESSION["uid"]; ?>">
     <input type="submit" name="sumbit-but" value="Apply"></input>
-
+</div>
 </body>
 </html>

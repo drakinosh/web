@@ -1,6 +1,11 @@
 <?php
 // asume config.php is included
+//
 function getUname($conn, $uid) {
+
+    if ($uid == -1) {
+        return "[deleted]";
+    }
 
     $stmt = $conn->prepare("SELECT username FROM users WHERE uid=?");
     $stmt->bindParam(1, $uid);
@@ -71,4 +76,38 @@ function numPages($conn, $thread_id)
     }
     return ceil(count($rows)/20);
 }
+
+function printStatus($conn, $thread_id)
+{
+    $stmt = $conn->prepare("SELECT * FROM threads WHERE tid=?");
+    $stmt->bindParam(1, $thread_id);
+    if (!$stmt->execute()) {
+        print "Database error.";
+        exit;
+    }
+
+    $row = $stmt->fetch();
+    $clo = "closed";
+    $sti = "stickied";
+
+    if ($row["open"] == "Y") {
+        $clo = "open";
+    }
+    if ($row["isSticky"] == "N") {
+        $sti = "not stickied";
+    }
+
+    echo $clo, " and ", $sti;
+}
+
+function showTrophies($user_flags)
+{
+    if ($user_flags & FLAG_STUDENT) {
+        echo "<tr class='trophy'><td><img src='/site_images/student_trophy.png' alt='Student'></td></tr>\n";
+    }
+    if ($user_flags & FLAG_MAINTAINER) {
+        echo "<tr class='trophy'><td><img src='/site_images/mod_trophy.png' alt='Maintainer'></td></tr>\n";
+    }
+}
+
 ?>

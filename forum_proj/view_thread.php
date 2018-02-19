@@ -69,14 +69,21 @@ if (PARSE_BBCODE == 'TRUE') {
 include 'head.php';
 
 echo "<div class='root-cont'>\n";
-echo "<h2 class='thread-title-text top-title';'>" . $row["title"]. "</h2>";
-echo "<p class='page-num-text''>Page " . $page . " of " . numPages($conn, $id) . "</p>";
+echo "<h2 class='thread-title-text top-title'>" . $row["title"]. "</h2>\n";
+echo "<p class='page-num-text'>Page " . $page . " of " . numPages($conn, $id) . "</p>\n";
 
 // moderator mini-panel
 if ($_SESSION["level"] == "M" || $_SESSION["level"] == "A") { ?>
     <div class="mod-panel">
+        <p><?php echo printStatus($conn, $id); ?></p>
+        <!--
         <a class="mod-but" href="process_mod.php?act=sticky&tid=<?php echo $id;?>">Sticky</a>
         <a class="mod-but" href="process_mod.php?act=close&tid=<?php echo $id;?>">Close</a>
+        -->
+        <input type="button" class="mod-but" onclick='location.href="process_mod.php?act=sticky&amp;tid=<?php echo $id; ?>";' value="Sticky">
+        <input type="button" class="mod-but" onclick='location.href="process_mod.php?act=close&amp;tid=<?php echo $id; ?>";' value="Close">
+
+
     </div>
 <?php
 }
@@ -92,13 +99,10 @@ if  ($page == 1) {?>
    </td>
 </tr>
 <tr>
-    <div class="post-ldata">
         <td class="tuser" valign="top"><a href="member.php?uid=<?php echo $user_row["uid"]; ?>"><?php echo  $user_row["username"]; ?></a>
         <?php printStat($user_row["level"]); ?>
         <img src="getimage.php?uid=<?php echo $row["t_uid"]; ?>" class="avatar-img">
         </td>
-    </div>
-    <div>
         <td class="tdetails" valign="top">
             <h3 class="post-thread-title"><?php echo $row["title"]; ?></h3>
             <br>
@@ -108,7 +112,6 @@ if  ($page == 1) {?>
             echo nl2br($parser->getParsed());
             ?>
         </td>
-    </div>
 </tr>
 </table>
 <?php
@@ -162,7 +165,6 @@ while ($row=$stmt->fetch()) {
 ?>
 
 <table class="post-table" id="post-<?php echo $row["pid"]; ?>" cellspacing="0" border=1>
-<div class="thread-reply">
 <tr>
     <td class="thead">
     <p class="post-date"><?php echo $row["pub_date"]; ?></p>
@@ -173,13 +175,12 @@ while ($row=$stmt->fetch()) {
     </td>
 </tr>
 <tr>
-    <div class="post-ldata">
+        <!-- previously post-ldata -->
         <td class="tuser" valign="top"><a href="member.php?uid=<?php echo $user_row["uid"]; ?>"><?php echo $user_row["username"]; ?></a>
         <?php printStat($user_row["level"]) ?>
         <img class="avatar-img" src="getimage.php?uid=<?php echo $user_row["uid"]; ?>"/>
         </td>
-    </div>
-    <div class="post-rdata">
+        <!-- previously post-rdata -->
         <td class="tdetails" valign="top">
             <h3 class="thread-title-post" valign="top">Re: <?php echo $thread_title; ?></h3>
             <br>
@@ -199,7 +200,7 @@ while ($row=$stmt->fetch()) {
             <div class="butDiv">
             <img src="site_images/quote_but.png"
                  onclick="quoteFill('<?php echo $user_row["username"];?>', String.raw `<?php echo $pure; ?>`);">
-             <a href=<?php echo "report.php?pid=" . $row["pid"] . "&p_tid=" . $row["p_tid"]; ?>>
+             <a href="<?php echo "report.php?pid=" . $row["pid"] . "&amp;p_tid=" . $row["p_tid"]; ?>">
                 <img src="site_images/report_but.png">
             </a>
             </div> 
@@ -217,18 +218,31 @@ while ($row=$stmt->fetch()) {
                 <a href="get_file.php?fname=<?php echo $fname; ?>"><?php echo $fname; ?></a>
             </div>
             </div>
+
             <?php
-            }?>
+            }
+            if ($user_row["signature"] != "") { ?>
+            <div class="sig" style="clear:both;">
+            ________________________
+            <br>
+            <?php
+            $sig=strip_tags($user_row["signature"]); // filter user-input HTML and PHP tags
+            $parser->setText($sig); $parser->parse();
+            echo nl2br($parser->getParsed());
+            ?>
+
+            </div>
+            <?php
+            }
+            ?>
+                
         </td>
-    </div>
 </tr>
-</div>
 </table>
 <?php
 }
 ?>
 
-</table>
 
 <!-- navigation bar -->
 
@@ -236,14 +250,19 @@ while ($row=$stmt->fetch()) {
     <tr>
     <?php
     if ($page != 1) { ?>
-    <td class="navi-but"><a href="view_thread.php?id=<?php echo $id;?>&page=<?php echo $page-1; ?>">Prev</a></td>
+    <td class="navi-but"><a href="view_thread.php?id=<?php echo $id;?>&amp;=<?php echo $page-1; ?>">Prev</a></td>
     <?php
     }
     
     if ($page != numPages($conn, $id)) { ?>
-    <td class="navi-but"><a href="view_thread.php?id=<?php echo $id;?>&page=<?php echo $page+1; ?>">Next</a></td>
+    <td class="navi-but"><a href="view_thread.php?id=<?php echo $id;?>&amp;page=<?php echo $page+1; ?>">Next</a></td>
     <?php
     } ?>
+    <form action="view_thread.php" method="get">
+    Page:<input type="text" name="page" style="width: 36px;">
+         <input type="hidden" name="id" value="<?php echo $id; ?>">
+         <input type="submit" value="Go!">
+    </form>
     </tr>
 </table>
 

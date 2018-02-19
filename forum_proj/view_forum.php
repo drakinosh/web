@@ -3,6 +3,8 @@ require_once 'config.php';
 require_once 'helpers/rep_count.php';
 require_once 'helpers/utils.php';
 
+session_start();
+
 ?>
 
 <html>

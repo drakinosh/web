@@ -67,6 +67,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->execute();
         unset($stmt);
     }
+
+    if (isset($_POST["signature"])) {
+        $stmt = $conn->prepare("UPDATE users SET signature=? WHERE uid=?");
+        $stmt->bindParam(1, $_POST["signature"]);
+        $stmt->bindParam(2, $uid);
+        $stmt->execute();
+        unset($stmt);
+    }
 }
 
 ?>

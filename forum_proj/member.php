@@ -50,6 +50,7 @@ include 'head.php';
 ?>
 
 <!-- <h3 style="text-align:center; text-decoration:underline;"> Stats for <?php echo $user_uname; ?> </h3> -->
+<div class="root-cont">
 <div class="user-data">
     <?php
     if ($self == 'T') {
@@ -86,7 +87,7 @@ include 'head.php';
 ?>
         <div class="mem-div" id="image-pane">
             <div class="mem-image">
-                <img src="getimage.php?uid=<?php echo $uid; ?>" class="avatar-img">
+                <img src="getimage.php?uid=<?php echo $uid; ?>" class="profile-img">
             </div>
         </div>
 
@@ -129,9 +130,11 @@ include 'head.php';
     if(isset($show_trophies) && $show_trophies == 'yes') { ?>
         <div class="mem-div pane-section" id="case-pane">
             <p>Trophy Case</p>
+            <?php echo $user_row["uflags"]; ?>
             <table id="case-table">
                     <tr>
                     </tr>
+                    <?php showTrophies((int)$user_row["uflags"]); ?>
             </table>
         </div>
     <?php
@@ -140,6 +143,20 @@ include 'head.php';
 
 </div>
 
+<?php
+if ($_SESSION["level"] == 'A') {
+?>
+<form action="process_main.php" method="POST">
+<label class="form-label">Add or Remove Flags<label>
+<input type="text" class="form-field" name="bit_pat">
+<input type="hidden" name="uid" value="<?php echo $user_row["uid"]; ?>">
+<input type="submit" name="add_pat" value="Add">
+<input type="submit" name="del_pat" value="Remove">
+</form>
+<?php
+}
+?>
+</div> <!-- end root cont -->
 </body>
 </html>
 
