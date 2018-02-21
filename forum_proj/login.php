@@ -63,8 +63,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php
 include 'head.php';
 ?>
-
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+    <div class="root-cont">
+    <form class="login-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 
     <h2>Login</h2>
     <div>
@@ -83,10 +83,11 @@ include 'head.php';
     <div>
     <input type="reset" class="form-button" value="Reset">
     </div>
-
     <p><a href="register.php"><strong>Register</strong></a></p>
     </form>
-    
+    </div>    
+
+<?php include 'foot.php'; ?>
 </body>
 </head>
 </html>

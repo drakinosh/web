@@ -39,6 +39,7 @@ form:not(.link-form) {
 
 .form-button {
     margin-left: 200px;
+    display: inline-block;
 }
 
 table{
@@ -306,7 +307,15 @@ div h4 {
 }
 
 .forum-link {
-    margin-left: 10%;
+    margin-left: 0;
+    text-decoration: None;
+    background-color: #FC4A1A;
+    color: white;
+    padding: 10px 20px;
+}
+
+.forum-link:hover {
+    background-color: #F7B733;
 }
 
 .logo-top {
@@ -322,9 +331,11 @@ div h4 {
     left: 0px;
     right: 0px;
     top: 0px;
+    width: 95%;
+    margin: 0 auto;
 }
 .user-toparea { 
-    right: 0;
+    right: 2.5%;
     position: absolute;
     top: 41px;
     background-color: #8E8E8E;
@@ -387,16 +398,18 @@ div h4 {
     margin-left: 30%;
 }
 .big-but {
-    background: #93BBFF;
+    background: #9ABDAC;;
     color: white;
     display: inline-block;
     text-decoration: none;
     padding: 10px 100px;
     text-align: center;
+    width: 20%;
+    margin-top: 10px;
 }
 
 .big-but:hover {
-    background:#5091FF;
+    background:#DFDCE3;
 }
 
 .mod-but {
@@ -406,3 +419,24 @@ div h4 {
 .trophy img{
     width: 50%;
 }
+
+.page-foot {
+    position:relative;
+    bottom: 0;
+    margin: 0 auto;
+    margin-top: -15px;
+    width: 95%;
+    color: white;
+    text-align: center;
+    background-color: #233237;
+    min-height: 80px;
+}
+
+.page-foot a:visited {
+    color: white;
+}
+
+.login-form {
+    border: 1px solid #A0BDCA;
+}
+

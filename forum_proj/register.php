@@ -109,8 +109,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
+<?php include 'head.php'; ?>
+<div class="root-cont">
 <?php
-include 'head.php';
 ?>
 
     <form enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
@@ -161,6 +162,8 @@ include 'head.php';
     </div>
 
     </form>
+</div>
+<?php include_once 'foot.php'; ?>
 </body>
 </head>
 </html>

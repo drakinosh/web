@@ -99,3 +99,8 @@ To do:
 Wed 14 Feb 2018 06:00:57 PM +0545
 -Page style improved lot (still not enough)
 -Added signature
+
+
+Wed 21 Feb 2018 06:13:26 PM +0545
+-Added trophies, and then the ability to add or remove(by admin)
+-Trophies use bit patterns (1, 2, 4, 8, ...)

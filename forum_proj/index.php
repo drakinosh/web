@@ -58,5 +58,9 @@ unset($stmt);
 <!-- </table> -->
 
 </div>
+</div>
+<?php
+include 'foot.php';
+?>
 </body>
 </html>

@@ -157,6 +157,8 @@ if ($_SESSION["level"] == 'A') {
 }
 ?>
 </div> <!-- end root cont -->
+
+<?php include 'foot.php'; ?>
 </body>
 </html>
 

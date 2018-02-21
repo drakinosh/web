@@ -304,5 +304,8 @@ if ($thread_row["open"] == 'N') {
 unset($row);
 ?>
 </div>
+<?php
+include 'foot.php';
+?>
 </body>
 </html>

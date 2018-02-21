@@ -24,7 +24,9 @@ include 'head.php';
 <?php
 
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["id"])) {
+
     echo "<h2 class='top-title' id='forum-title'>" . getForumName($conn, $_GET["id"]) . "</h2>\n";
+
     $stmt = $conn->prepare("SELECT * FROM threads WHERE forum_id=? ORDER BY isSticky='N'");
     $stmt->bindParam(1, $for_id);
     
@@ -34,33 +36,42 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["id"])) {
     ?>
     
     <a class="forum-link" href="create_thread.php?forum_id=<?php echo $_GET["id"]; ?>">Create Thread</a>
-    <p style="text-align: center;"><b>Threads:</b></p>
+
+    <table class="thread-table" border="1">
+        <tr>
+        <th class="tid">Id</th>
+        <th class="ttitle">Title</th>
+        <th class="treplies">Replies</th>
+        </tr>
+
     <?php
     while ($row = $stmt->fetch()) {
-        /*
         if ($row["isSticky"] == "Y") {
-            echo "<a class='big-but thread-sticky'>\n";
+            echo "<tr class='thread-sticky'>\n";
         } else {
-            echo "<a class='big-but'>\n";
+            echo "<tr>\n";
         }
-         */
-?>
-            <div class="forum-cont">
-            <a class="big-but" href="view_thread.php?id=<?php echo $row["tid"]; ?>&page=1"><?php echo $row["title"]; ?></a>
+    ?>
+        <td><?php echo $row["tid"]; ?></td>
+        <td>
+            <a href="view_thread.php?id=<?php echo $row["tid"]; ?>&page=1"><?php echo $row["title"]; ?></a>
         <?php if ($row["isSticky"] == "Y") { ?>
-            <p class="sticky-circle" style="display: inline;">[Sticky]</p>
-            <!-- <img class="sticky-circle" src="site_images/sticky.png"> -->
-        <?php
-    }echo "(" . getReplyCount($conn, $row["tid"]) . " replies)"; ?>
-            </div>
+            <p style="display: inline;">[Sticky]</p>
+        <?php } ?> 
+        </td>
+        <td><?php echo getReplyCount($conn, $row["tid"]); ?></td>
+        </tr>
     <?php
     }
 
     unset($stmt);
 
-}?>
+    ?>
+    </table>
+    </div>
 </div>
-</div>
-<?php include 'foot.php'; ?>
-</body>
-</html>
+    </body>
+    </html>
+<?php
+}
+?>

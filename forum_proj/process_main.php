@@ -11,14 +11,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     $uid = $_POST["uid"];
     
-    if (isset($_POST["add_bit"])) {
-        $stmt = $conn->prepare("UPDATE `users` SET uflags = uflags | :num WHERE uid=:uid");
-        $stmt->bindParam(":num", (int)$_POST["bit_pat"], PDO::PARAM_INT);
-        $stmt->bindParam(":uid", (int)$_POST["uid"], PDO::PARAM_INT);
+    if (isset($_POST["add_pat"])) {
+        $stmt = $conn->prepare("UPDATE `users` SET uflags = uflags | ? WHERE uid=?");
+        $stmt->bindParam(1, $_POST["bit_pat"]);
+        $stmt->bindParam(2, $_POST["uid"]);
         if(!$stmt->execute()) {
             print "Error.";
         }
+    } elseif (isset($_POST["del_pat"])) {
+        $stmt = $conn->prepare("UPDATE `users` SET uflags = uflags & ~? WHERE uid=?");
+        $stmt->bindParam(1, $_POST["bit_pat"]);
+        $stmt->bindParam(2, $_POST["uid"]);
+        $stmt->execute();
     }
+
+    header("location: member.php?uid=" . $uid);
+    exit;
+
 }
 
 ?>
