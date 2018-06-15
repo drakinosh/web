@@ -104,3 +104,7 @@ Wed 14 Feb 2018 06:00:57 PM +0545
 Wed 21 Feb 2018 06:13:26 PM +0545
 -Added trophies, and then the ability to add or remove(by admin)
 -Trophies use bit patterns (1, 2, 4, 8, ...)
+
+
+Fri Jun 15 21:48:07 2018
+-Checking changed username, unrelated to project
