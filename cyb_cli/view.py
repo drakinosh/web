@@ -11,7 +11,7 @@ board = sys.argv[1]
 num = sys.argv[2]
 
 DUMP = False 
-SPAM_FILTER = True
+SPAM_FILTER = False
 URL = "https://cyberland.club/{}/?num={}"
 DELIM = "-" * 32
 SPAM_LIST = [ "4chenz" ]
@@ -45,7 +45,7 @@ def getChildrenList(post_id, sorted_post_list):
 
 
 def isPostParent(post_dict):
-    return post_dict['replyTo'] == None
+    return post_dict['replyTo'] in [None, "0"]
 
 
 print("[Requested Posts: {}, Received Posts: {}]".format(num, len(sorted_posts)))
