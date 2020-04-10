@@ -3,6 +3,7 @@
 import requests, sys
 import json
 
+
 if len(sys.argv) != 3:
     print("Incorrect arguments")
     sys.exit()
@@ -12,11 +13,20 @@ num = sys.argv[2]
 
 DUMP = False 
 SPAM_FILTER = False
+CHRONO_ = False
+LIM = 500000
 URL = "https://cyberland.club/{}/?num={}"
 DELIM = "-" * 32
 SPAM_LIST = [ "4chenz" ]
 
-resp = requests.get(URL.format(board, num)) 
+if num == "CHRONO":
+    CHRONO_ = True
+
+if not CHRONO_:
+    resp = requests.get(URL.format(board, num)) 
+else:
+    resp = requests.get(URL.format(board, LIM))
+
 json_dict = json.loads(resp.text)
 sorted_posts = sorted(json_dict, key=lambda d: int(d['id']))
 printed_posts = []
@@ -53,6 +63,15 @@ print("[Requested Posts: {}, Received Posts: {}]".format(num, len(sorted_posts))
 # spam filter
 if SPAM_FILTER:
     sorted_posts = [p for p in sorted_posts if not isPostSpam(p)]
+
+# if chrono order
+if CHRONO_:
+    for post in sorted_posts:
+        print(getPostString(post))
+        print("")
+
+    sys.exit()
+
 parent_posts = [p for p in sorted_posts if isPostParent(p)]
 
 for p_post in parent_posts:

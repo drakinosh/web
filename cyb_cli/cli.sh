@@ -2,6 +2,7 @@
 
 # so as to not pollute bash history
 
+# example POST o 72 "What the \nHell?"
 comm="X"
 HISTFILE="hist.txt"
 while [[ $comm != "QUIT" ]]
@@ -15,8 +16,14 @@ do
         
     
     elif [[ $comm == "POST" ]]; then
-        echo $c
         python post.py "$a" "$b" "$c"
         echo "$a | $b | $c " >> $HISTFILE
+
+    elif [[ $comm == "CLEAR" ]]; then
+        clear
+        clear
+        clear
+        clear
+        clear
     fi
 done
