@@ -10,12 +10,22 @@ if len(sys.argv) != 3:
 board = sys.argv[1]
 num = sys.argv[2]
 
+DUMP = False 
+SPAM_FILTER = True
 URL = "https://cyberland.club/{}/?num={}"
 DELIM = "-" * 32
+SPAM_LIST = [ "4chenz" ]
+
 resp = requests.get(URL.format(board, num)) 
 json_dict = json.loads(resp.text)
 sorted_posts = sorted(json_dict, key=lambda d: int(d['id']))
 printed_posts = []
+
+if DUMP:
+    print(json_dict)
+
+def isPostSpam(post_dict):
+    return any(word in post_dict['content'] for word in SPAM_LIST)
 
 def getPostString(post_dict):
     return "ID->{}\nREP->{}\n{}".format(post_dict['id'], post_dict['replyTo'], post_dict['content'])
@@ -30,7 +40,7 @@ def getChildrenList(post_id, sorted_post_list):
     for x in li:
         li.extend(getChildrenList(x['id'], sorted_post_list))
     
-
+    # guarantee uniqueness
     return sorted(li, key=lambda d: int(d['id']))
 
 
@@ -40,6 +50,9 @@ def isPostParent(post_dict):
 
 print("[Requested Posts: {}, Received Posts: {}]".format(num, len(sorted_posts)))
 
+# spam filter
+if SPAM_FILTER:
+    sorted_posts = [p for p in sorted_posts if not isPostSpam(p)]
 parent_posts = [p for p in sorted_posts if isPostParent(p)]
 
 for p_post in parent_posts:
@@ -49,6 +62,10 @@ for p_post in parent_posts:
     print(" ")
 
     for c in getChildrenList(p_post['id'], sorted_posts):
+
+        # somehow getting duplicate children; investigate later
+        if c in printed_posts:
+            continue
         printed_posts.append(c)
         print(getPostString(c))
         print("")
