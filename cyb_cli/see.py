@@ -6,7 +6,7 @@
 import sys, requests
 import json
 
-URL = "https://cyberland.club/{}/?thread={}&num={}"
+URL = "https://cyberland2.club/{}/?thread={}&num={}"
 LIM = "50"
 
 board = sys.argv[1]

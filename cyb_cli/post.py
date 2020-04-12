@@ -13,7 +13,8 @@ board = sys.argv[1]
 reply_to = sys.argv[2]
 content = sys.argv[3]
 
-URL = "https://cyberland.club/{}/".format(board)
+print("Content: ", repr(content))
+URL = "https://cyberland2.club/{}/".format(board)
 param_dict = { 
         'content' : content,
         'replyTo' : reply_to

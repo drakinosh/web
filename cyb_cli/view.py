@@ -15,7 +15,7 @@ DUMP = False
 SPAM_FILTER = False
 CHRONO_ = False
 LIM = 500000
-URL = "https://cyberland.club/{}/?num={}"
+URL = "https://cyberland2.club/{}/?num={}"
 DELIM = "-" * 32
 SPAM_LIST = [ "4chenz" ]
 

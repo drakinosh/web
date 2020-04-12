@@ -9,7 +9,7 @@ while [[ $comm != "QUIT" ]]
 do
     #echo "[inp]> "
     printf "[last: $a]> "
-    read comm a b c
+    read  comm a b c
 
     if [[ $comm == "VIEW" ]]; then
         python view.py "$a" "$b"
@@ -17,6 +17,7 @@ do
     
     elif [[ $comm == "POST" ]]; then
         python post.py "$a" "$b" "$c"
+
         echo "$a | $b | $c " >> $HISTFILE
 
     elif [[ $comm == "CLEAR" ]]; then
@@ -25,5 +26,9 @@ do
         clear
         clear
         clear
+
+    elif [[ $comm == "t" ]] || [[ $comm == "n" ]] || [[ $comm == "o" ]]; then
+        python view.py $comm CHRONO
     fi
+
 done
